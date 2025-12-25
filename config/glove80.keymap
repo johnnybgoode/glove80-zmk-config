@@ -63,18 +63,18 @@
 /* Automatically generated layer name defines */
 #define LAYER_ColemakDH 0
 #define LAYER_Typing 1
-#define LAYER_Cursor 2
-#define LAYER_Number 3
-#define LAYER_Function 4
-#define LAYER_Symbol 5
-#define LAYER_LeftPinky 6
-#define LAYER_LeftRingy 7
-#define LAYER_LeftMiddy 8
-#define LAYER_LeftIndex 9
-#define LAYER_RightPinky 10
-#define LAYER_RightRingy 11
-#define LAYER_RightMiddy 12
-#define LAYER_RightIndex 13
+#define LAYER_LeftPinky 2
+#define LAYER_LeftRingy 3
+#define LAYER_LeftMiddy 4
+#define LAYER_LeftIndex 5
+#define LAYER_RightPinky 6
+#define LAYER_RightRingy 7
+#define LAYER_RightMiddy 8
+#define LAYER_RightIndex 9
+#define LAYER_Cursor 10
+#define LAYER_Number 11
+#define LAYER_Function 12
+#define LAYER_Symbol 13
 #define LAYER_Mouse 14
 #define LAYER_MouseFine 15
 #define LAYER_MouseSlow 16
@@ -83,6 +83,7 @@
 #define LAYER_Factory 19
 #define LAYER_Lower 20
 #define LAYER_Magic 21
+
 
 /* To deal with the situation where there is no Lower layer, to keep &lower happy */
 #ifndef LAYER_Lower
@@ -319,26 +320,26 @@
 
 /* Custom Defined Behaviors */
 / {
-#define OPERATING_SYSTEM 'M' 
+    #define OPERATING_SYSTEM 'M' 
 #define DIFFICULTY_LEVEL 0 
 #define ENFORCE_BILATERAL 
 #define ENABLE_MOUSE_KEYS 
-#ifndef TAPPING_RESOLUTION
-#define TAPPING_RESOLUTION 150
-#endif
-#define HOMEY_STREAK_DECAY (TAPPING_RESOLUTION + 25)
-#define HOMEY_REPEAT_DECAY (TAPPING_RESOLUTION + 250) 
-#define INDEX_REPEAT_DECAY (HOMEY_REPEAT_DECAY - 150) 
-#define THUMB_REPEAT_DECAY HOMEY_REPEAT_DECAY
-#define SPACE_REPEAT_DECAY (HOMEY_REPEAT_DECAY - 100) 
-#define PINKY_HOLDING_TIME (TAPPING_RESOLUTION + 50) 
-#define PINKY_REPEAT_DECAY (TAPPING_RESOLUTION + 150) 
-#define PINKY_STREAK_DECAY (TAPPING_RESOLUTION - 50) 
-#define THUMB_HOLDING_TIME (TAPPING_RESOLUTION + 50) 
-#define TD_HOLDING_TIME (THUMB_HOLDING_TIME + 150)
+#define TAPPING_RESOLUTION 175
+#define PINKY_HOLDING_TIME (TAPPING_RESOLUTION + 25)
+#define PINKY_REPEAT_DECAY (TAPPING_RESOLUTION + 150)
+#define PINKY_STREAK_DECAY (TAPPING_RESOLUTION - 50)
+#define RIGHT_MIDDY_HOLDING_TIME (TAPPING_RESOLUTION + 125)
+#define THUMB_HOLDING_TIME TAPPING_RESOLUTION
+#define SPACE_HOLDING_TIME (TAPPING_RESOLUTION + 75)
+#define DANCE_HOLDING_TIME (TAPPING_RESOLUTION + 125)
+#define HOMEY_REPEAT_DECAY (TAPPING_RESOLUTION + 125)
+#define INDEX_REPEAT_DECAY (TAPPING_RESOLUTION + 25)
+#define THUMB_REPEAT_DECAY (TAPPING_RESOLUTION + 125)
+#define SPACE_REPEAT_DECAY (TAPPING_RESOLUTION + 25)
+#define HOMEY_STREAK_DECAY TAPPING_RESOLUTION
 #define PINKY_FINGER_MOD LSFT
-#define RING1_FINGER_MOD LALT
-#define RING2_FINGER_MOD RALT
+#define LEFT_RINGY_MOD LALT
+#define RIGHT_RINGY_MOD RALT
 #define MIDDY_FINGER_MOD LGUI
 #define INDEX_FINGER_MOD LCTL
 #ifndef OPERATING_SYSTEM
@@ -613,36 +614,6 @@ layers = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20>;
 };
 };
 behaviors {
-#ifdef DIFFICULTY_LEVEL
-#if DIFFICULTY_LEVEL > 0 && DIFFICULTY_LEVEL < 6
-#ifndef TAPPING_RESOLUTION
-#define TAPPING_RESOLUTION ((6 - DIFFICULTY_LEVEL) * 100)
-#endif
-#endif
-#endif
-#ifndef TAPPING_RESOLUTION
-#define TAPPING_RESOLUTION 150
-#endif
-#ifndef PINKY_FINGER_MOD
-#if OPERATING_SYSTEM == 'M' && !defined(MACOS_USE_GACS)
-#define PINKY_FINGER_MOD LCTL
-#else
-#define PINKY_FINGER_MOD LGUI
-#endif
-#endif
-#ifndef RINGY_FINGER_MOD
-#define RINGY_FINGER_MOD LALT
-#endif
-#ifndef MIDDY_FINGER_MOD
-#if OPERATING_SYSTEM == 'M' && !defined(MACOS_USE_GACS)
-#define MIDDY_FINGER_MOD LGUI
-#else
-#define MIDDY_FINGER_MOD LCTL
-#endif
-#endif
-#ifndef INDEX_FINGER_MOD
-#define INDEX_FINGER_MOD LSFT
-#endif
 #ifndef LEFT_PINKY_MOD
 #define LEFT_PINKY_MOD PINKY_FINGER_MOD
 #endif
@@ -671,31 +642,19 @@ behaviors {
 #define HOMEY_HOLDING_TYPE "tap-preferred"
 #endif
 #ifndef HOMEY_HOLDING_TIME
-#define HOMEY_HOLDING_TIME (TAPPING_RESOLUTION + 90)
-#endif
-#ifndef INDEX_HOLDING_TIME
-#define INDEX_HOLDING_TIME (TAPPING_RESOLUTION + 40)
-#endif
-#ifndef MIDDY_HOLDING_TIME
-#define MIDDY_HOLDING_TIME (TAPPING_RESOLUTION + 60)
-#endif
-#ifndef RINGY_HOLDING_TIME
-#define RINGY_HOLDING_TIME (TAPPING_RESOLUTION + 80)
-#endif
-#ifndef PINKY_HOLDING_TIME
-#define PINKY_HOLDING_TIME (TAPPING_RESOLUTION + 120)
+#define HOMEY_HOLDING_TIME (TAPPING_RESOLUTION + 65)
 #endif
 #ifndef HOMEY_STREAK_DECAY
-#define HOMEY_STREAK_DECAY TAPPING_RESOLUTION
+#define HOMEY_STREAK_DECAY (TAPPING_RESOLUTION - 25)
 #endif
 #ifndef HOMEY_REPEAT_DECAY
-#define HOMEY_REPEAT_DECAY (TAPPING_RESOLUTION + 150)
+#define HOMEY_REPEAT_DECAY (TAPPING_RESOLUTION + 125)
 #endif 
 #ifndef CHORD_HOLDING_TYPE
 #define CHORD_HOLDING_TYPE HOMEY_HOLDING_TYPE
 #endif
 #ifndef CHORD_HOLDING_TIME
-#define CHORD_HOLDING_TIME TAPPING_RESOLUTION
+#define CHORD_HOLDING_TIME (TAPPING_RESOLUTION - 25)
 #endif
 #ifndef CHORD_STREAK_DECAY
 #define CHORD_STREAK_DECAY HOMEY_STREAK_DECAY
@@ -707,19 +666,19 @@ behaviors {
 #define INDEX_HOLDING_TYPE "tap-preferred"
 #endif
 #ifndef INDEX_STREAK_DECAY
-#define INDEX_STREAK_DECAY TAPPING_RESOLUTION
+#define INDEX_STREAK_DECAY (TAPPING_RESOLUTION - 25)
 #endif
 #ifndef INDEX_REPEAT_DECAY
-#define INDEX_REPEAT_DECAY (TAPPING_RESOLUTION + 150)
+#define INDEX_REPEAT_DECAY (TAPPING_RESOLUTION + 125)
 #endif 
 #ifndef THUMB_HOLDING_TYPE
 #define THUMB_HOLDING_TYPE "balanced"
 #endif
 #ifndef THUMB_HOLDING_TIME
-#define THUMB_HOLDING_TIME (TAPPING_RESOLUTION + 50)
+#define THUMB_HOLDING_TIME (TAPPING_RESOLUTION + 25)
 #endif
 #ifndef THUMB_REPEAT_DECAY
-#define THUMB_REPEAT_DECAY (TAPPING_RESOLUTION + 150)
+#define THUMB_REPEAT_DECAY (TAPPING_RESOLUTION + 125)
 #endif 
 #ifndef SPACE_HOLDING_TYPE
 #define SPACE_HOLDING_TYPE THUMB_HOLDING_TYPE
@@ -728,7 +687,7 @@ behaviors {
 #define SPACE_HOLDING_TIME THUMB_HOLDING_TIME
 #endif
 #ifndef SPACE_REPEAT_DECAY
-#define SPACE_REPEAT_DECAY TAPPING_RESOLUTION
+#define SPACE_REPEAT_DECAY (TAPPING_RESOLUTION - 25)
 #endif
 #define \
 LEFT_HAND_KEYS \
@@ -738,9 +697,9 @@ LEFT_HAND_KEYS \
 34 35 36 37 38 39 \
 46 47 48 49 50 51 \
 64 65 66 67 68 \
-69 52 \
-70 53 \
-71 54
+69 52 57 74 \
+70 53 56 73 \
+71 54 55 72
 #define \
 RIGHT_HAND_KEYS \
 5 6 7 8 9 \
@@ -749,9 +708,9 @@ RIGHT_HAND_KEYS \
 40 41 42 43 44 45 \
 58 59 60 61 62 63 \
 75 76 77 78 79 \
-57 74 \
-56 73 \
-55 72
+69 52 57 74 \
+70 53 56 73 \
+71 54 55 72
 #define LEFT_PINKY_KEY KEY_LH_C5R4
 #define LEFT_RINGY_KEY KEY_LH_C4R4
 #define LEFT_MIDDY_KEY KEY_LH_C3R4
@@ -1033,15 +992,7 @@ bindings
 , <&macro_tap &kp MACRO_PLACEHOLDER>
 ;
 };
-#define LeftPinky(key, layer_index) LeftPinky_unroll(layer_index) (key)
-#define LeftPinky_unroll(layer_index) LeftPinky_concat(LeftPinky_layer, layer_index)
-#define LeftPinky_concat(prefix, layer_index) prefix ## layer_index
-#ifdef ENFORCE_BILATERAL
-#define left_pinky_layer0_variant left_pinky_bilateral
-#else
-#define left_pinky_layer0_variant left_pinky
-#endif
-#define LeftPinky_layer0(key) left_pinky_layer0_variant LEFT_PINKY_MOD key
+#define LeftPinky(key) left_pinky_bilateral LEFT_PINKY_MOD key
 #ifndef RIGHT_PINKY_HOLDING_TYPE
 #define RIGHT_PINKY_HOLDING_TYPE PINKY_HOLDING_TYPE
 #endif
@@ -1123,15 +1074,7 @@ bindings
 , <&macro_tap &kp MACRO_PLACEHOLDER>
 ;
 };
-#define RightPinky(key, layer_index) RightPinky_unroll(layer_index) (key)
-#define RightPinky_unroll(layer_index) RightPinky_concat(RightPinky_layer, layer_index)
-#define RightPinky_concat(prefix, layer_index) prefix ## layer_index
-#ifdef ENFORCE_BILATERAL
-#define right_pinky_layer0_variant right_pinky_bilateral
-#else
-#define right_pinky_layer0_variant right_pinky
-#endif
-#define RightPinky_layer0(key) right_pinky_layer0_variant RIGHT_PINKY_MOD key
+#define RightPinky(key) right_pinky_bilateral RIGHT_PINKY_MOD key
 #ifndef LEFT_RINGY_HOLDING_TYPE
 #define LEFT_RINGY_HOLDING_TYPE RINGY_HOLDING_TYPE
 #endif
@@ -1213,15 +1156,7 @@ bindings
 , <&macro_tap &kp MACRO_PLACEHOLDER>
 ;
 };
-#define LeftRingy(key, layer_index) LeftRingy_unroll(layer_index) (key)
-#define LeftRingy_unroll(layer_index) LeftRingy_concat(LeftRingy_layer, layer_index)
-#define LeftRingy_concat(prefix, layer_index) prefix ## layer_index
-#ifdef ENFORCE_BILATERAL
-#define left_ringy_layer0_variant left_ringy_bilateral
-#else
-#define left_ringy_layer0_variant left_ringy
-#endif
-#define LeftRingy_layer0(key) left_ringy_layer0_variant LEFT_RINGY_MOD key
+#define LeftRingy(key) left_ringy_bilateral LEFT_RINGY_MOD key
 #ifndef RIGHT_RINGY_HOLDING_TYPE
 #define RIGHT_RINGY_HOLDING_TYPE RINGY_HOLDING_TYPE
 #endif
@@ -1303,15 +1238,7 @@ bindings
 , <&macro_tap &kp MACRO_PLACEHOLDER>
 ;
 };
-#define RightRingy(key, layer_index) RightRingy_unroll(layer_index) (key)
-#define RightRingy_unroll(layer_index) RightRingy_concat(RightRingy_layer, layer_index)
-#define RightRingy_concat(prefix, layer_index) prefix ## layer_index
-#ifdef ENFORCE_BILATERAL
-#define right_ringy_layer0_variant right_ringy_bilateral
-#else
-#define right_ringy_layer0_variant right_ringy
-#endif
-#define RightRingy_layer0(key) right_ringy_layer0_variant RIGHT_RINGY_MOD key
+#define RightRingy(key) right_ringy_bilateral RIGHT_RINGY_MOD key
 #ifndef LEFT_MIDDY_HOLDING_TYPE
 #define LEFT_MIDDY_HOLDING_TYPE MIDDY_HOLDING_TYPE
 #endif
@@ -1393,15 +1320,7 @@ bindings
 , <&macro_tap &kp MACRO_PLACEHOLDER>
 ;
 };
-#define LeftMiddy(key, layer_index) LeftMiddy_unroll(layer_index) (key)
-#define LeftMiddy_unroll(layer_index) LeftMiddy_concat(LeftMiddy_layer, layer_index)
-#define LeftMiddy_concat(prefix, layer_index) prefix ## layer_index
-#ifdef ENFORCE_BILATERAL
-#define left_middy_layer0_variant left_middy_bilateral
-#else
-#define left_middy_layer0_variant left_middy
-#endif
-#define LeftMiddy_layer0(key) left_middy_layer0_variant LEFT_MIDDY_MOD key
+#define LeftMiddy(key) left_middy_bilateral LEFT_MIDDY_MOD key
 #ifndef RIGHT_MIDDY_HOLDING_TYPE
 #define RIGHT_MIDDY_HOLDING_TYPE MIDDY_HOLDING_TYPE
 #endif
@@ -1483,15 +1402,7 @@ bindings
 , <&macro_tap &kp MACRO_PLACEHOLDER>
 ;
 };
-#define RightMiddy(key, layer_index) RightMiddy_unroll(layer_index) (key)
-#define RightMiddy_unroll(layer_index) RightMiddy_concat(RightMiddy_layer, layer_index)
-#define RightMiddy_concat(prefix, layer_index) prefix ## layer_index
-#ifdef ENFORCE_BILATERAL
-#define right_middy_layer0_variant right_middy_bilateral
-#else
-#define right_middy_layer0_variant right_middy
-#endif
-#define RightMiddy_layer0(key) right_middy_layer0_variant RIGHT_MIDDY_MOD key
+#define RightMiddy(key) right_middy_bilateral RIGHT_MIDDY_MOD key
 #ifndef LEFT_INDEX_HOLDING_TYPE
 #define LEFT_INDEX_HOLDING_TYPE INDEX_HOLDING_TYPE
 #endif
@@ -1573,15 +1484,7 @@ bindings
 , <&macro_tap &kp MACRO_PLACEHOLDER>
 ;
 };
-#define LeftIndex(key, layer_index) LeftIndex_unroll(layer_index) (key)
-#define LeftIndex_unroll(layer_index) LeftIndex_concat(LeftIndex_layer, layer_index)
-#define LeftIndex_concat(prefix, layer_index) prefix ## layer_index
-#ifdef ENFORCE_BILATERAL
-#define left_index_layer0_variant left_index_bilateral
-#else
-#define left_index_layer0_variant left_index
-#endif
-#define LeftIndex_layer0(key) left_index_layer0_variant LEFT_INDEX_MOD key
+#define LeftIndex(key) left_index_bilateral LEFT_INDEX_MOD key
 #ifndef RIGHT_INDEX_HOLDING_TYPE
 #define RIGHT_INDEX_HOLDING_TYPE INDEX_HOLDING_TYPE
 #endif
@@ -1663,15 +1566,7 @@ bindings
 , <&macro_tap &kp MACRO_PLACEHOLDER>
 ;
 };
-#define RightIndex(key, layer_index) RightIndex_unroll(layer_index) (key)
-#define RightIndex_unroll(layer_index) RightIndex_concat(RightIndex_layer, layer_index)
-#define RightIndex_concat(prefix, layer_index) prefix ## layer_index
-#ifdef ENFORCE_BILATERAL
-#define right_index_layer0_variant right_index_bilateral
-#else
-#define right_index_layer0_variant right_index
-#endif
-#define RightIndex_layer0(key) right_index_layer0_variant RIGHT_INDEX_MOD key
+#define RightIndex(key) right_index_bilateral RIGHT_INDEX_MOD key
 #ifndef LEFT_RINGY_PINKY_HOLDING_TYPE
 #define LEFT_RINGY_PINKY_HOLDING_TYPE LEFT_RINGY_CHORD_HOLDING_TYPE
 #endif
@@ -2515,13 +2410,13 @@ bindings = <&kp>, <&right_middy_tap>;
 td_lsft_capsw: tap_dance_l_shift_caps_word {
 compatible = "zmk,behavior-tap-dance";
 #binding-cells = <0>;
-tapping-term-ms = <TD_HOLDING_TIME>;
+tapping-term-ms = <DANCE_HOLDING_TIME>;
 bindings = <&sticky_key_oneshot LSFT>, <&caps_word>;
 };
 td_rsft_capsw: tap_dance_r_shift_caps_word {
 compatible = "zmk,behavior-tap-dance";
 #binding-cells = <0>;
-tapping-term-ms = <TD_HOLDING_TIME>;
+tapping-term-ms = <DANCE_HOLDING_TIME>;
 bindings = <&sticky_key_oneshot RSFT>, <&caps_word>;
 };
 thumb: thumb_layer_access {
@@ -2726,7 +2621,7 @@ mods = <(MOD_LSFT|MOD_RSFT)>;
 #define STICKY_1SHOT_DECAY 500
 #endif
 #ifndef STICKY_HOLDING_TIME
-#define STICKY_HOLDING_TIME (TAPPING_RESOLUTION + 50)
+#define STICKY_HOLDING_TIME (TAPPING_RESOLUTION + 25)
 #endif
 sticky_key_modtap: sticky_key_modtap {
 compatible = "zmk,behavior-hold-tap";
@@ -3034,28 +2929,6 @@ input-processors = <&zip_scroll_scaling_processor MOUSE_SCALER_WARP>;
 
 };
 
-/* Generated input processors */
-
-
-/* Automatically generated macro definitions */
-/ {
-    macros {
-
-    };
-};
-
-/* Automatically generated behavior definitions */
-/ {
-    behaviors {
-
-
-    };
-};
-
-/* Automatically generated combos definitions */
-
-
-/* Automatically generated keymap */
 / {
     keymap {
         compatible = "zmk,keymap";
@@ -3063,12 +2936,12 @@ input-processors = <&zip_scroll_scaling_processor MOUSE_SCALER_WARP>;
 
         layer_ColemakDH {
             bindings = <
-                &none                            &none                            &none                            &none                            &none                                                                                                                                                                                                          &none                             &none                             &none                             &none                 &none
-                &none                           &kp N1                           &kp N2                           &kp N3                           &kp N4  &kp N5                                                                                                                                                               &kp N6                            &kp N7                            &kp N8                            &kp N9                            &kp N0                 &none
-            &kp GRAVE                            &kp Q                            &kp W                            &kp F                            &kp P   &kp B                                                                                                                                                                &kp J                             &kp L                             &kp U                             &kp Y                          &kp SEMI             &kp MINUS
-       &td_lsft_capsw  &LeftPinky (A, LAYER_ColemakDH)  &LeftRingy (R, LAYER_ColemakDH)  &LeftMiddy (S, LAYER_ColemakDH)  &LeftIndex (T, LAYER_ColemakDH)   &kp G                                                                                                                                                                &kp M  &RightIndex (N, LAYER_ColemakDH)  &RightMiddy (E, LAYER_ColemakDH)  &RightRingy (I, LAYER_ColemakDH)  &RightPinky (O, LAYER_ColemakDH)               &kp SQT
-                &none                            &kp Z                            &kp X                            &kp C                            &kp D   &kp V      &thumb LAYER_Function ESC                &parang_left               &parang_right          &kp _HOME                &kp _END   &thumb LAYER_Magic ENTER   &kp K                             &kp H                         &kp COMMA                           &kp DOT                          &kp FSLH        &td_rsft_capsw
- &magic LAYER_Magic 0                        &kp EQUAL                         &kp LBKT                         &kp RBKT          &thumb LAYER_Mouse BSLH          &thumb LAYER_Cursor BACKSPACE  &thumb LAYER_Number DELETE  &thumb LAYER_Typing INSERT  &tog LAYER_Typing  &thumb LAYER_Mouse TAB  &space LAYER_Symbol SPACE                                 &kp PG_DN            &msc MOUSE_SCROLL_DOWN              &msc MOUSE_SCROLL_UP                         &kp PG_UP  &magic LAYER_Magic 0
+                &none           &none           &none           &none                    &none                                                                                                                                                                                         &none                   &none                 &none            &none                 &none
+                &none          &kp N1          &kp N2          &kp N3                   &kp N4  &kp N5                                                                                                                                                               &kp N6           &kp N7                  &kp N8                &kp N9           &kp N0                 &none
+            &kp GRAVE           &kp Q           &kp W           &kp F                    &kp P   &kp B                                                                                                                                                                &kp J            &kp L                   &kp U                 &kp Y         &kp SEMI             &kp MINUS
+       &td_lsft_capsw  &LeftPinky (A)  &LeftRingy (R)  &LeftMiddy (S)           &LeftIndex (T)   &kp G                                                                                                                                                                &kp M  &RightIndex (N)         &RightMiddy (E)       &RightRingy (I)  &RightPinky (O)               &kp SQT
+                &none           &kp Z           &kp X           &kp C                    &kp D   &kp V      &thumb LAYER_Function ESC                &parang_left               &parang_right          &kp _HOME                &kp _END   &thumb LAYER_Magic ENTER   &kp K            &kp H               &kp COMMA               &kp DOT         &kp FSLH        &td_rsft_capsw
+ &magic LAYER_Magic 0       &kp EQUAL        &kp LBKT        &kp RBKT  &thumb LAYER_Mouse BSLH          &thumb LAYER_Cursor BACKSPACE  &thumb LAYER_Number DELETE  &thumb LAYER_Typing INSERT  &tog LAYER_Typing  &thumb LAYER_Mouse TAB  &space LAYER_Symbol SPACE                &kp PG_DN  &msc MOUSE_SCROLL_DOWN  &msc MOUSE_SCROLL_UP        &kp PG_UP  &magic LAYER_Magic 0
             >;
         };
 
@@ -3080,50 +2953,6 @@ input-processors = <&zip_scroll_scaling_processor MOUSE_SCALER_WARP>;
                    &trans  &kp LEFT_PINKY_KEY  &kp LEFT_RINGY_KEY  &kp LEFT_MIDDY_KEY  &kp LEFT_INDEX_KEY  &trans                                                             &trans  &kp RIGHT_INDEX_KEY  &kp RIGHT_MIDDY_KEY  &kp RIGHT_RINGY_KEY  &kp RIGHT_PINKY_KEY                    &trans
  &sticky_key_oneshot LSFT              &trans              &trans              &trans              &trans  &trans  &trans  &trans  &trans             &trans  &trans  &trans  &trans               &trans               &trans               &trans               &trans  &sticky_key_oneshot RSFT
                    &trans  &kp LEFT_PINKY_MOD  &kp LEFT_RINGY_MOD  &kp LEFT_MIDDY_MOD  &kp LEFT_INDEX_MOD          &trans  &trans  &trans  &tog LAYER_Typing  &trans  &trans          &kp RIGHT_INDEX_MOD  &kp RIGHT_MIDDY_MOD  &kp RIGHT_RINGY_MOD  &kp RIGHT_PINKY_MOD                    &trans
-            >;
-        };
-
-        layer_Cursor {
-            bindings = <
-     &none               &none               &none               &none               &none                                                                                                             &none           &none           &none      &none      &none
-     &none             &kp ESC             &kp INS         &kp LS(TAB)             &kp DEL       &none                                                                                    &none        &none           &none           &none      &none      &none
-     &none             &kp RET           &kp SPACE             &kp TAB            &kp BSPC    &kp _CUT                                                                                 &kp _CUT  &kp LS(TAB)       &kp _UNDO       &kp _REDO    &kp TAB      &none
- &sk LSHFT  &kp LEFT_PINKY_MOD  &kp LEFT_RINGY_MOD  &kp LEFT_MIDDY_MOD  &kp LEFT_INDEX_MOD   &kp _COPY                                                                                &kp _COPY     &kp LEFT        &kp DOWN          &kp UP  &kp RIGHT  &sk LSHFT
- &kp _C(L)         &select_all        &select_line        &select_word           &kp _FIND  &kp _PASTE              &none   &none   &none  &select_none  &extend_line  &extend_word  &kp _PASTE    &kp _HOME       &kp PG_DN       &kp PG_UP   &kp _END  &kp _C(L)
- &kp _C(K)           &kp _UNDO           &kp _REDO      &kp _FIND_PREV      &kp _FIND_NEXT              &tog LAYER_Cursor   &none   &none   &select_all  &select_line  &select_word                &kp _FIND  &kp _FIND_PREV  &kp _FIND_NEXT  &kp _C(H)  &kp _C(K)
-            >;
-        };
-
-        layer_Number {
-            bindings = <
-         &none               &none               &none               &none               &none                                                                                                       &kp A       &kp B       &kp C          &kp D          &kp E
-         &none             &kp ESC             &kp INS         &kp LS(TAB)             &kp DEL   &none                                                                            &kp LS(BSLH)  &kp LS(N3)  &kp LS(N4)  &kp LS(N6)  &kp LS(GRAVE)     &kp LS(N1)
-         &kp E             &kp RET           &kp SPACE             &kp TAB            &kp BSPC  &kp N0                                                                               &kp LS(G)      &kp N7      &kp N8      &kp N9   &kp LS(SEMI)     &kp LS(N5)
-     &sk LSHFT  &kp LEFT_PINKY_MOD  &kp LEFT_RINGY_MOD  &kp LEFT_MIDDY_MOD  &kp LEFT_INDEX_MOD   &kp X                                                                                   &kp K      &kp N4      &kp N5      &kp N6      &kp MINUS  &kp LS(EQUAL)
- &kp LS(MINUS)         &select_all        &select_line        &select_word           &kp _FIND   &kp F   &none              &none   &none  &kp LS(COMMA)  &kp LS(DOT)  &kp COMMA         &kp J      &kp N1      &kp N2      &kp N3       &kp FSLH     &kp LS(N8)
-         &none           &kp _UNDO           &kp _REDO      &kp _FIND_PREV      &kp _FIND_NEXT           &none  &tog LAYER_Number   &none      &kp EQUAL      &kp DOT     &kp N0                &kp LS(N9)    &kp LBKT    &kp RBKT     &kp LS(N0)     &kp LS(N2)
-            >;
-        };
-
-        layer_Function {
-            bindings = <
-     &none               &none               &none               &none               &none                                                                                                                        &none       &none       &none       &none           &none
-     &none             &kp ESC             &kp INS         &kp LS(TAB)             &kp DEL       &none                                                                                  &kp C_MEDIA_HOME     &kp C_PLAY  &kp C_PREV  &kp C_NEXT  &kp C_STOP     &kp C_EJECT
-     &none             &kp RET           &kp SPACE             &kp TAB            &kp BSPC  &kp K_CALC                                                                                        &kp K_CALC         &kp F7      &kp F8      &kp F9     &kp F10         &kp F13
- &sk LSHFT  &kp LEFT_PINKY_MOD  &kp LEFT_RINGY_MOD  &kp LEFT_MIDDY_MOD  &kp LEFT_INDEX_MOD   &kp K_WWW                                                                                         &kp K_WWW         &kp F4      &kp F5      &kp F6     &kp F11         &kp F14
-     &none         &select_all        &select_line        &select_word           &kp _FIND  &kp _FILES  &tog LAYER_Function   &none   &none  &kp C_BRI_MIN  &kp C_BRI_DN  &kp C_BRI_UP        &kp _FILES         &kp F1      &kp F2      &kp F3     &kp F12         &kp F15
-     &none           &kp _UNDO           &kp _REDO      &kp _FIND_PREV      &kp _FIND_NEXT                            &none   &none   &none     &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP                    &kp C_BRI_MAX  &kp C_PREV  &kp C_NEXT    &kp C_PP  &kp C_BRI_AUTO
-            >;
-        };
-
-        layer_Symbol {
-            bindings = <
-         &none          &none         &none                 &none          &none                                                                                                                             &none                &none                &none                &none   &none
-     &kp GRAVE      &kp COMMA    &kp LS(N9)            &kp LS(N0)       &kp SEMI       &kp DOT                                                                                          &none                &none                &none                &none                &none   &none
-    &kp LS(N1)       &kp LBKT  &kp LS(LBKT)          &kp LS(RBKT)       &kp RBKT  &kp LS(FSLH)                                                                                      &kp GRAVE              &kp DEL          &kp LS(TAB)              &kp INS              &kp ESC   &none
-    &kp LS(N3)     &kp LS(N6)     &kp EQUAL         &kp LS(MINUS)     &kp LS(N4)    &kp LS(N8)                                                                           &kp LS(SINGLE_QUOTE)             &kp BSPC              &kp TAB            &kp SPACE              &kp RET   &none
- &kp LS(GRAVE)  &kp LS(COMMA)  &kp LS(BSLH)             &kp MINUS    &kp LS(DOT)      &kp FSLH    &kp BSLH       &kp DOT  &kp LS(N8)   &none   &none              &none               &kp SQT  &sk RIGHT_INDEX_MOD  &sk RIGHT_MIDDY_MOD  &sk RIGHT_RINGY_MOD  &sk RIGHT_PINKY_MOD   &none
-      &dot_dot     &kp LS(N7)       &kp SQT  &kp LS(SINGLE_QUOTE)  &kp LS(EQUAL)                &kp LS(N5)  &kp LS(SEMI)  &kp LS(N2)   &none   &none  &tog LAYER_Symbol                                      &none                &none                &none                &none   &none
             >;
         };
 
@@ -3212,6 +3041,50 @@ input-processors = <&zip_scroll_scaling_processor MOUSE_SCALER_WARP>;
  &trans  &kp LEFT_PINKY_KEY  &kp LEFT_RINGY_KEY  &kp LEFT_MIDDY_KEY  &kp LEFT_INDEX_KEY  &trans                                                                                                 &right_index_tap KEY_RH_C1R4                         &none              &RightIndexMiddy              &RightIndexRingy              &RightIndexPinky  &right_index_tap KEY_RH_C6R4
  &trans              &trans              &trans              &trans              &trans  &trans  &trans  &trans  &trans  &right_index_tap KEY_RH_T3  &right_index_tap KEY_RH_T2  &mo LAY_RH_T1  &right_index_tap KEY_RH_C1R5  &right_index_tap KEY_RH_C2R5  &right_index_tap KEY_RH_C3R5  &right_index_tap KEY_RH_C4R5  &right_index_tap KEY_RH_C5R5                        &trans
  &trans              &trans              &trans              &trans              &trans          &trans  &trans  &trans               &mo LAY_RH_T6               &mo LAY_RH_T5  &mo LAY_RH_T4                                &right_index_tap KEY_RH_C2R6  &right_index_tap KEY_RH_C3R6  &right_index_tap KEY_RH_C4R6  &right_index_tap KEY_RH_C5R6                        &trans
+            >;
+        };
+
+        layer_Cursor {
+            bindings = <
+     &none               &none               &none               &none               &none                                                                                                             &none           &none           &none      &none      &none
+     &none             &kp ESC             &kp INS         &kp LS(TAB)             &kp DEL       &none                                                                                    &none        &none           &none           &none      &none      &none
+     &none             &kp RET           &kp SPACE             &kp TAB            &kp BSPC    &kp _CUT                                                                                 &kp _CUT  &kp LS(TAB)       &kp _UNDO       &kp _REDO    &kp TAB      &none
+ &sk LSHFT  &kp LEFT_PINKY_MOD  &kp LEFT_RINGY_MOD  &kp LEFT_MIDDY_MOD  &kp LEFT_INDEX_MOD   &kp _COPY                                                                                &kp _COPY     &kp LEFT        &kp DOWN          &kp UP  &kp RIGHT  &sk LSHFT
+ &kp _C(L)         &select_all        &select_line        &select_word           &kp _FIND  &kp _PASTE              &none   &none   &none  &select_none  &extend_line  &extend_word  &kp _PASTE    &kp _HOME       &kp PG_DN       &kp PG_UP   &kp _END  &kp _C(L)
+ &kp _C(K)           &kp _UNDO           &kp _REDO      &kp _FIND_PREV      &kp _FIND_NEXT              &tog LAYER_Cursor   &none   &none   &select_all  &select_line  &select_word                &kp _FIND  &kp _FIND_PREV  &kp _FIND_NEXT  &kp _C(H)  &kp _C(K)
+            >;
+        };
+
+        layer_Number {
+            bindings = <
+         &none               &none               &none               &none               &none                                                                                                       &kp A       &kp B       &kp C          &kp D          &kp E
+         &none             &kp ESC             &kp INS         &kp LS(TAB)             &kp DEL   &none                                                                            &kp LS(BSLH)  &kp LS(N3)  &kp LS(N4)  &kp LS(N6)  &kp LS(GRAVE)     &kp LS(N1)
+         &kp E             &kp RET           &kp SPACE             &kp TAB            &kp BSPC  &kp N0                                                                               &kp LS(G)      &kp N7      &kp N8      &kp N9   &kp LS(SEMI)     &kp LS(N5)
+     &sk LSHFT  &kp LEFT_PINKY_MOD  &kp LEFT_RINGY_MOD  &kp LEFT_MIDDY_MOD  &kp LEFT_INDEX_MOD   &kp X                                                                                   &kp K      &kp N4      &kp N5      &kp N6      &kp MINUS  &kp LS(EQUAL)
+ &kp LS(MINUS)         &select_all        &select_line        &select_word           &kp _FIND   &kp F   &none              &none   &none  &kp LS(COMMA)  &kp LS(DOT)  &kp COMMA         &kp J      &kp N1      &kp N2      &kp N3       &kp FSLH     &kp LS(N8)
+         &none           &kp _UNDO           &kp _REDO      &kp _FIND_PREV      &kp _FIND_NEXT           &none  &tog LAYER_Number   &none      &kp EQUAL      &kp DOT     &kp N0                &kp LS(N9)    &kp LBKT    &kp RBKT     &kp LS(N0)     &kp LS(N2)
+            >;
+        };
+
+        layer_Function {
+            bindings = <
+     &none               &none               &none               &none               &none                                                                                                                        &none       &none       &none       &none           &none
+     &none             &kp ESC             &kp INS         &kp LS(TAB)             &kp DEL       &none                                                                                  &kp C_MEDIA_HOME     &kp C_PLAY  &kp C_PREV  &kp C_NEXT  &kp C_STOP     &kp C_EJECT
+     &none             &kp RET           &kp SPACE             &kp TAB            &kp BSPC  &kp K_CALC                                                                                        &kp K_CALC         &kp F7      &kp F8      &kp F9     &kp F10         &kp F13
+ &sk LSHFT  &kp LEFT_PINKY_MOD  &kp LEFT_RINGY_MOD  &kp LEFT_MIDDY_MOD  &kp LEFT_INDEX_MOD   &kp K_WWW                                                                                         &kp K_WWW         &kp F4      &kp F5      &kp F6     &kp F11         &kp F14
+     &none         &select_all        &select_line        &select_word           &kp _FIND  &kp _FILES  &tog LAYER_Function   &none   &none  &kp C_BRI_MIN  &kp C_BRI_DN  &kp C_BRI_UP        &kp _FILES         &kp F1      &kp F2      &kp F3     &kp F12         &kp F15
+     &none           &kp _UNDO           &kp _REDO      &kp _FIND_PREV      &kp _FIND_NEXT                            &none   &none   &none     &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP                    &kp C_BRI_MAX  &kp C_PREV  &kp C_NEXT    &kp C_PP  &kp C_BRI_AUTO
+            >;
+        };
+
+        layer_Symbol {
+            bindings = <
+         &none          &none         &none                 &none          &none                                                                                                                             &none                &none                &none                &none   &none
+     &kp GRAVE      &kp COMMA    &kp LS(N9)            &kp LS(N0)       &kp SEMI       &kp DOT                                                                                          &none                &none                &none                &none                &none   &none
+    &kp LS(N1)       &kp LBKT  &kp LS(LBKT)          &kp LS(RBKT)       &kp RBKT  &kp LS(FSLH)                                                                                      &kp GRAVE              &kp DEL          &kp LS(TAB)              &kp INS              &kp ESC   &none
+    &kp LS(N3)     &kp LS(N6)     &kp EQUAL         &kp LS(MINUS)     &kp LS(N4)    &kp LS(N8)                                                                           &kp LS(SINGLE_QUOTE)             &kp BSPC              &kp TAB            &kp SPACE              &kp RET   &none
+ &kp LS(GRAVE)  &kp LS(COMMA)  &kp LS(BSLH)             &kp MINUS    &kp LS(DOT)      &kp FSLH    &kp BSLH       &kp DOT  &kp LS(N8)   &none   &none              &none               &kp SQT  &sk RIGHT_INDEX_MOD  &sk RIGHT_MIDDY_MOD  &sk RIGHT_RINGY_MOD  &sk RIGHT_PINKY_MOD   &none
+      &dot_dot     &kp LS(N7)       &kp SQT  &kp LS(SINGLE_QUOTE)  &kp LS(EQUAL)                &kp LS(N5)  &kp LS(SEMI)  &kp LS(N2)   &none   &none  &tog LAYER_Symbol                                      &none                &none                &none                &none   &none
             >;
         };
 
