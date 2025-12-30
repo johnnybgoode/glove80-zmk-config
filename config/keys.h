@@ -274,7 +274,7 @@
 #define KEY_RH_T4 SPACE
 #define LAY_RH_T4 LAYER_Symbol
 #define KEY_RH_C2R6 PG_DN
-#define KEY_RH_C3R6 MOUSE_SCROLL_DOWN
-#define KEY_RH_C4R6 MOUSE_SCROLL_UP
+#define KEY_RH_C3R6 MSC_DN
+#define KEY_RH_C4R6 MSC_UP
 #define KEY_RH_C5R6 PG_UP
 #define KEY_RH_C6R6 0

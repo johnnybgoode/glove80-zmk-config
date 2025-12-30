@@ -1,8 +1,7 @@
-#include <zephyr/dt-bindings/input/input-event-codes.h>
-#include <dt-bindings/zmk/input_transform.h>
-#include <dt-bindings/zmk/pointing.h>
-#include <input/processors.dtsi>
-
+#define MSC_UP SCRL_UP
+#define MSC_DN SCRL_DOWN
+#define MSC_L  SCRL_LEFT
+#define MSC_R  SCRL_RIGHT
 //
 // MOUSE_MOTION_DELAY defines how long to wait (milliseconds) before starting
 // to move the mouse pointer.
