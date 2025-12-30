@@ -46,23 +46,9 @@
 #include "macros.dtsi"
 #include "combos.dtsi"
 #include "mouse.dtsi"
+#include "behaviors.dtsi"
 #include "hrms.dtsi"
 
-#define THUMB_HOLDING_TIME 150
-ZMK_HOLD_TAP(thumb, bindings = <&mo>, <&kp>; flavor = "balanced"; \
-    tapping-term-ms = <THUMB_HOLDING_TIME>; quick-tap-ms = <300>;
-)
-#define SPACE_HOLDING_TIME 250
-ZMK_HOLD_TAP(space, bindings = <&mo>, <&kp>; flavor = "balanced"; \
-    tapping-term-ms = <SPACE_HOLDING_TIME>; quick-tap-ms = <200>;
-)
-#define TD_HOLDING_TIME 300
-ZMK_TAP_DANCE(td_lsft_capsw, bindings = <&sticky_key_oneshot LSFT>, <&caps_word>; \
-              tapping-term-ms = <TD_HOLDING_TIME>;
-)
-ZMK_TAP_DANCE(td_rsft_capsw, bindings = <&sticky_key_oneshot RSFT>, <&caps_word>; \
-              tapping-term-ms = <TD_HOLDING_TIME>;
-)
 
 / {
     keymap {
