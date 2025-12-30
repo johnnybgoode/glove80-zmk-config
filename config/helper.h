@@ -131,11 +131,3 @@
             }; \
         }; \
     };
-
-/* ZMK_APPLY_MATRIX_TRANSFORM */
-/*
-#define ZMK_APPLY_MATRIX_TRANSFORM(transform) \
-    / { \
-        chosen { zmk,matrix_transform = &transform; }; \
-    };
-*/
