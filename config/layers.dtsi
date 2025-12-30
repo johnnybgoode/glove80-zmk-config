@@ -1,0 +1,51 @@
+#define GLV80_LAYER(...) CONCAT(GLV80_LAYER_, VARGS(__VA_ARGS__))(__VA_ARGS__)
+#define GLV80_LAYER_13(NAME, LU, RU, LH, RH, LL, LT1, RT1, RL, LB, LT2, RT2, RB)                \
+  GLV80_LAYER_15(                                                                               \
+      NAME,                                                                                     \
+      &none  &none  &none  &none  &none  &none,       &none  &none  &none  &none  &none  &none, \
+                    LU,                                                       RU,               \
+                    LH,                                                       RH,               \
+                    LL,                    LT1,       RT1,                    RL,               \
+                    LB,                    LT2,       RT2,                    RB)
+
+#define GLV80_LAYER_15(NAME, LN, RN, LU, RU, LH, RH, LL, LT1, RT1, RL, LB, LT2, RT2, RB)        \
+  GLV80_LAYER_BASE(                                                                             \
+      NAME,                                                                                     \
+      &none  &none  &none  &none  &none,                     &none  &none  &none  &none  &none, \
+                    LN,                                                       RN,               \
+                    LU,                                                       RU,               \
+                    LH,                                                       RH,               \
+                    LL,                    LT1,       RT1,                    RL,               \
+                    LB,                    LT2,       RT2,                    RB)
+
+#define GLV80_LAYER_17(NAME, LF, RF, LN, RN, LU, RU, LH, RH, LL, LT1, RT1, RL, LB, LT2, RT2, RB)   \
+  ZMK_LAYER(NAME, LF RF LN RN LU RU LH RH LL LT1 RT1 RL LB LT2 RT2 RB)
+
+#define GLV80_LAYER_BASE(NAME, LF, RF, LN, RN, LU, RU, LH, RH, LL, LT1, RT1, RL, LB, LT2, RT2, RB) \
+  ZMK_LAYER(NAME, LF RF LN RN LU RU LH RH LL LT1 RT1 RL LB LT2 RT2 RB)
+
+#define GLV80_LAYER_HRML(NAME, LU, LH, LL, LT1, LB, LT2) \
+  GLV80_LAYER(                                                                                                                                                              \
+      NAME,                                                                                                                                                                 \
+                    LU,                                                 &trans               &trans               &trans               &trans               &trans  &trans, \
+                    LH,                                                 &trans  &kp RIGHT_INDEX_KEY  &kp RIGHT_MIDDY_KEY  &kp RIGHT_RINGY_KEY  &kp RIGHT_PINKY_KEY  &trans, \
+                    LL,             LT1,        &trans  &trans  &trans, &trans               &trans               &trans               &trans               &trans  &trans, \
+                    LB,             LT2,        &trans  &trans  &trans,                      &trans               &trans               &trans               &trans  &trans)
+
+#define GLV80_LAYER_HRMR(NAME, RU, RH, RT1, RL, RT2, RB) \
+  GLV80_LAYER(                                                                                                                                        \
+      NAME,                                                                                                                                           \
+    &trans              &trans              &trans              &trans              &trans  &trans,                                               RU, \
+    &trans  &kp LEFT_PINKY_KEY  &kp LEFT_RINGY_KEY  &kp LEFT_MIDDY_KEY  &kp LEFT_INDEX_KEY  &trans,                                               RH, \
+    &trans              &trans              &trans              &trans              &trans  &trans, &trans  &trans  &trans,       RT1,            RB, \
+    &trans              &trans              &trans              &trans              &trans,         &trans  &trans  &trans,       RT2,            RL)
+
+#define GLV80_LAYER_TRANS(NAME) \
+  ZMK_LAYER(                                                                                                                                       \
+      NAME,                                                                                                                                        \
+    &trans  &trans  &trans  &trans  &trans                                                                  &trans  &trans  &trans  &trans  &trans \
+    &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans \
+    &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans \
+    &trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans \
+    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans \
+    &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans)
