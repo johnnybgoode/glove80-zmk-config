@@ -8,12 +8,12 @@
 #define ZMK_COMBO_TYPE(name, combo_bindings, keypos) \
   ZMK_COMBO(name, combo_bindings, keypos, LAYER_Base LAYER_Typing, SHIFT_FIRING_DECAY)
 
-ZMK_COMBO_BASE(cmd_tab_l, &mod_tab_chord _A_TAB LAYER_Cursor, LT1 LT4)
-ZMK_COMBO_BASE(ctl_tab_l, &mod_tab_chord LCTL   LAYER_Cursor, LT2 LT5)
-ZMK_COMBO_BASE(alt_tab_l, &mod_tab_chord _G_TAB LAYER_Cursor, LT3 LT6)
+ZMK_COMBO_BASE(cmd_tab_l, &mod_tab_chord _A_TAB LAYER_Cursor, LT2 LT5)
+ZMK_COMBO_BASE(ctl_tab_l, &mod_tab_chord LCTL   LAYER_Cursor, LT3 LT6)
+ZMK_COMBO_BASE(alt_tab_l, &mod_tab_chord _G_TAB LAYER_Cursor, LT1 LT4)
 
-// ZMK_COMBO_TYPE(sticky_shift_l, &sticky_key_modtap LSFT LSFT, LT1 LH4)
-// ZMK_COMBO_TYPE(sticky_shift_r, &sticky_key_modtap RSFT RSFT, RT1 RH4)
+ZMK_COMBO_TYPE(sticky_shift_l, &sk_modtap LSFT LSFT, LT4 LH4)
+ZMK_COMBO_TYPE(sticky_shift_r, &sk_modtap RSFT RSFT, RT4 RH4)
 ZMK_COMBO_TYPE(caps_word_l, &caps_word, LT4 LT5)
 ZMK_COMBO_TYPE(caps_word_r, &caps_word, RT4 RT5)
 ZMK_COMBO_TYPE(caps_lock_l, &kp CAPSLOCK, LT5 LT6)
