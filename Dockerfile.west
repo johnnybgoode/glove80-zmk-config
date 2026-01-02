@@ -2,16 +2,6 @@ FROM zmkfirmware/zmk-build-arm:3.5-branch
 #FROM zmkfirmware/zmk-build-arm:3.5-branch-20241019024248-3.5.0-0.16.3-f93290b3ab1a-11413885991
 # FROM zmkfirmware/zmk-build-arm:stable
 
-COPY config /config
-COPY draw /draw
-
-RUN <<EOF
-  cd /
-  west init -l /config
-  west update --fetch-opt=--filter=blob:none
-  west zephyr-export
-EOF
-
 RUN <<EOF
   apt-get update
   apt-get install -y pipx yq
@@ -25,6 +15,15 @@ RUN <<EOF
 EOF
 
 ENV PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+COPY config /config
+
+RUN <<EOF
+  cd /
+  west init -l /config
+  west update --fetch-opt=--filter=blob:none
+  west zephyr-export
+EOF
 
 COPY --chmod=755 <<EOF /bin/build.sh
 #!/usr/bin/env bash
@@ -89,6 +88,7 @@ COPY --chmod=755 <<EOF /bin/build.sh
   done
 EOF
 
+COPY draw /draw
 COPY --chmod=755 <<EOF /bin/draw.sh
 #!/usr/bin/env bash
   keymap -c /draw/config.yaml parse -z /config/glove80.keymap
