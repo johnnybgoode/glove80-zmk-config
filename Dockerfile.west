@@ -14,7 +14,7 @@ EOF
 
 RUN <<EOF
   apt-get update
-  apt-get install -y pipx
+  apt-get install -y pipx yq
 
   pipx install keymap-drawer
   pipx ensurepath
@@ -29,11 +29,13 @@ ENV PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbi
 COPY --chmod=755 <<EOF /bin/build.sh
 #!/usr/bin/env bash
 
-  UPDATE_MODULES=true
+  UPDATE_MODULES=`[[ -e /modules/zmk/helpers/zephyr ]] && echo false || echo true 2>/dev/null`
   BUILD_ARGS=()
   CMAKE_ARGS=()
+  BUILD_DIR=/tmp
+  OUT_DIR=/.build
 
-  while getopts "u:b:c:" opt; do
+  while getopts "u:b:c:o:" opt; do
     case \${opt} in
       u)
         UPDATE_MODULES=true
@@ -44,6 +46,9 @@ COPY --chmod=755 <<EOF /bin/build.sh
       c)
         CMAKE_ARGS+=("\${OPTARG}")
         ;;
+      o)
+        OUT_DIR="\${OPTARG}"
+      ;;
     esac
   done
 
@@ -63,14 +68,28 @@ COPY --chmod=755 <<EOF /bin/build.sh
   )
   CMAKE_EXTRA_MODULES_STRING="\$(IFS=\\; ; echo "\${CMAKE_EXTRA_MODULES[*]}")"
 
-  west build -p -s /zmk/app -d /tmp/glv80_lh  -b glove80_lh \${BUILD_ARGS[@]} -- \\
-    -DZMK_EXTRA_MODULES=\${CMAKE_EXTRA_MODULES_STRING} \\
-    -DZMK_CONFIG=/config \\
-    \${CMAKE_ARGS[@]}
+  BOARDS=\$(yq -r "(.include)[] | [.board] | join(\\",\\")" /config/build.yaml)
+
+  for BOARD in \$BOARDS; do
+    west build -s /zmk/app -d "/\$BUILD_DIR/\$BOARD" -b \$BOARD \${BUILD_ARGS[@]} -- \\
+      -DZMK_EXTRA_MODULES=\${CMAKE_EXTRA_MODULES_STRING} \\
+      -DZMK_CONFIG=/config \\
+      \${CMAKE_ARGS[@]}
+
+    mkdir -p "/\$OUT_DIR"
+
+    if [ -f "/\$BUILD_DIR/\$BOARD/zephyr/zmk.uf2" ]; then
+      cp "\$BUILD_DIR/\$BOARD/zephyr/zmk.uf2" "\$OUT_DIR/\${BOARD}.uf2"
+    else
+      DTS_FILES=("zephyr.dts" "zephyr.dts.pre")
+      for DTS_FILE in "\${DTS_FILES[@]}"; do
+        [ -f "/\$BUILD_DIR/\$BOARD/zephyr/\$DTS_FILE" ] && cp  "/\$BUILD_DIR/\$BOARD/zephyr/\$DTS_FILE" "/\$OUT_DIR/\$BOARD\${DTS_FILE#zephyr}"
+      done
+    fi
+  done
 EOF
 
 COPY --chmod=755 <<EOF /bin/draw.sh
 #!/usr/bin/env bash
-
   keymap -c /draw/config.yaml parse -z /config/glove80.keymap
 EOF
