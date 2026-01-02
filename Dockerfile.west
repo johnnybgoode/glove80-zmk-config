@@ -3,6 +3,7 @@ FROM zmkfirmware/zmk-build-arm:3.5-branch
 # FROM zmkfirmware/zmk-build-arm:stable
 
 COPY config /config
+COPY draw /draw
 
 RUN <<EOF
   cd /
@@ -15,19 +16,15 @@ RUN <<EOF
   apt-get update
   apt-get install -y pipx
 
-  pipx install keymap-draw
+  pipx install keymap-drawer
   pipx ensurepath
 
-  #apt-get remove -y --purge pipx
-  #apt-get clean
-  #apt-get autoremove -y
+  apt-get remove -y --purge pipx
+  apt-get clean
+  apt-get autoremove -y
 EOF
 
-#RUN <<EOF
-  #set -euo pipefail
-  # git clone --mirror https://github.com/moergo-sc/zmk /zmk
-  # GIT_DIR=/zmk git worktree add --detach /src
-#EOF
+ENV PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 COPY --chmod=755 <<EOF /bin/build.sh
 #!/usr/bin/env bash
@@ -65,11 +62,15 @@ COPY --chmod=755 <<EOF /bin/build.sh
     "/modules/zmk/unicode"
   )
   CMAKE_EXTRA_MODULES_STRING="\$(IFS=\\; ; echo "\${CMAKE_EXTRA_MODULES[*]}")"
-  echo "CMAKE_EXTRA_MODULES_STRING: \${CMAKE_EXTRA_MODULES_STRING}"
 
-# west build -p -s /zmk/app -d /tmp/glv80_lh_cmake  -b glove80_lh --cmake-only -- \
   west build -p -s /zmk/app -d /tmp/glv80_lh  -b glove80_lh \${BUILD_ARGS[@]} -- \\
     -DZMK_EXTRA_MODULES=\${CMAKE_EXTRA_MODULES_STRING} \\
     -DZMK_CONFIG=/config \\
     \${CMAKE_ARGS[@]}
+EOF
+
+COPY --chmod=755 <<EOF /bin/draw.sh
+#!/usr/bin/env bash
+
+  keymap -c /draw/config.yaml parse -z /config/glove80.keymap
 EOF
