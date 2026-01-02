@@ -1,0 +1,22 @@
+ZMK_TD_LAYER(lower, LAYER_Lower)
+ZMK_MACRO(rgb_ug_status_macro, bindings = <&rgb_ug RGB_STATUS>;)
+ZMK_HOLD_TAP(magic,
+    bindings = <&mo>, <&rgb_ug_status_macro>; 
+    flavor = "tap-preferred"; tapping-term-ms = <200>;
+)
+
+#ifdef BT_DISC_CMD
+  ZMK_TAP_DANCE(bt_0, bindings = <&bt_select_0>, <&bt BT_DISC 0>; tapping-term-ms = <200>;)
+  ZMK_TAP_DANCE(bt_1, bindings = <&bt_select_1>, <&bt BT_DISC 1>; tapping-term-ms = <200>;)
+  ZMK_TAP_DANCE(bt_2, bindings = <&bt_select_2>, <&bt BT_DISC 2>; tapping-term-ms = <200>;)
+  ZMK_TAP_DANCE(bt_3, bindings = <&bt_select_3>, <&bt BT_DISC 3>; tapping-term-ms = <200>;)
+  ZMK_MACRO(bt_select_0, bindings = <&out OUT_BLE>, <&bt BT_SEL 0>;)
+  ZMK_MACRO(bt_select_1, bindings = <&out OUT_BLE>, <&bt BT_SEL 1>;)
+  ZMK_MACRO(bt_select_2, bindings = <&out OUT_BLE>, <&bt BT_SEL 2>;)
+  ZMK_MACRO(bt_select_3, bindings = <&out OUT_BLE>, <&bt BT_SEL 3>;)
+#else
+  ZMK_MACRO(bt_0, bindings = <&out OUT_BLE>, <&bt BT_SEL 0>;)
+  ZMK_MACRO(bt_1, bindings = <&out OUT_BLE>, <&bt BT_SEL 1>;)
+  ZMK_MACRO(bt_2, bindings = <&out OUT_BLE>, <&bt BT_SEL 2>;)
+  ZMK_MACRO(bt_3, bindings = <&out OUT_BLE>, <&bt BT_SEL 3>;)
+#endif

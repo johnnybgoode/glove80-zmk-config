@@ -1,0 +1,25 @@
+#!/bin/sh -eu
+#
+# Flashes the newest _build/*.uf2 file to your Glove80.
+#
+targets=$(
+  until ls -d /Volumes/GLV80?HBOOT 2>/dev/null; do
+    echo Waiting for Glove80 device... >&2
+    sleep 1
+  done
+)
+build_dir=${1:-'_build'}
+newest=$(ls -t $build_dir/*.uf2 | head -1)
+
+echo "Flashing '${newest}' to ${targets[@]**/\n}"
+
+for target in ${targets}; do
+  cp -v "$newest" "${target}/flash.uf2" &
+done
+
+while ls -d /Volumes/GLV80?HBOOT > /dev/null 2>&1; do
+  sleep 2
+  echo '...'
+done
+
+#tee -p "${targets}" < "$newest" 1>/dev/null

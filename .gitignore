@@ -1,2 +1,4 @@
 *~
+_build
 *.uf2
+tmp

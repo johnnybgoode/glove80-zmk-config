@@ -23,11 +23,13 @@ RUN <<EOF
     done
 EOF
 
+ARG CACHEBUST=1
 COPY --chmod=755 <<EOF /bin/entrypoint.sh
 #!/usr/bin/env bash
     set -euo pipefail
     : "\${BRANCH:=main}"
 
+    echo "Build time is $CACHEBUST"
     echo "Checking out \$BRANCH from moergo-sc/zmk" >&2
     cd /src
     git fetch origin
@@ -35,8 +37,8 @@ COPY --chmod=755 <<EOF /bin/entrypoint.sh
 
     echo 'Building Glove80 firmware' >&2
     cd /config
-    nix-build ./config --arg firmware 'import /src/default.nix {}' -j2 -o /tmp/combined --show-trace
-    install -o "\$UID" -g "\$GID" /tmp/combined/glove80.uf2 ./glove80.uf2
+    nix-build ./config --arg firmware 'import /src/default.nix {}' -j2 -o /tmp/combined --show-trace -K
+    install -o "\$UID" -g "\$GID" /tmp/combined/glove80.uf2 ./_build/`date +"%s"`.uf2
 EOF
 
 ENTRYPOINT ["/bin/entrypoint.sh"]
