@@ -1,0 +1,95 @@
+FROM zmkfirmware/zmk-build-arm:3.5-branch
+#FROM zmkfirmware/zmk-build-arm:3.5-branch-20241019024248-3.5.0-0.16.3-f93290b3ab1a-11413885991
+# FROM zmkfirmware/zmk-build-arm:stable
+
+RUN <<EOF
+  apt-get update
+  apt-get install -y pipx yq
+
+  pipx install keymap-drawer
+  pipx ensurepath
+
+  apt-get remove -y --purge pipx
+  apt-get clean
+  apt-get autoremove -y
+EOF
+
+ENV PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+COPY config /config
+
+RUN <<EOF
+  cd /
+  west init -l /config
+  west update --fetch-opt=--filter=blob:none
+  west zephyr-export
+EOF
+
+COPY --chmod=755 <<EOF /bin/build.sh
+#!/usr/bin/env bash
+
+  UPDATE_MODULES=`[[ -e /modules/zmk/helpers/zephyr ]] && echo false || echo true 2>/dev/null`
+  BUILD_ARGS=()
+  CMAKE_ARGS=()
+  BUILD_DIR=/tmp
+  OUT_DIR=/.build
+
+  while getopts "u:b:c:o:" opt; do
+    case \${opt} in
+      u)
+        UPDATE_MODULES=true
+        ;;
+      b)
+        BUILD_ARGS+=("\${OPTARG}")
+        ;;
+      c)
+        CMAKE_ARGS+=("\${OPTARG}")
+        ;;
+      o)
+        OUT_DIR="\${OPTARG}"
+      ;;
+    esac
+  done
+
+  cd /
+  
+  if [ "\$UPDATE_MODULES" = true ]; then
+    west update --fetch-opt=--filter=blob:none
+  fi
+
+  CMAKE_EXTRA_MODULES=(
+    "/modules/zmk/adaptive-key"
+    "/modules/zmk/auto-layer"
+    "/modules/zmk/helpers"
+    "/modules/zmk/leader-key"
+    "/modules/zmk/tri-state"
+    "/modules/zmk/unicode"
+  )
+  CMAKE_EXTRA_MODULES_STRING="\$(IFS=\\; ; echo "\${CMAKE_EXTRA_MODULES[*]}")"
+
+  BOARDS=\$(yq -r "(.include)[] | [.board] | join(\\",\\")" /config/build.yaml)
+
+  for BOARD in \$BOARDS; do
+    west build -s /zmk/app -d "/\$BUILD_DIR/\$BOARD" -b \$BOARD \${BUILD_ARGS[@]} -- \\
+      -DZMK_EXTRA_MODULES=\${CMAKE_EXTRA_MODULES_STRING} \\
+      -DZMK_CONFIG=/config \\
+      \${CMAKE_ARGS[@]}
+
+    mkdir -p "/\$OUT_DIR"
+
+    if [ -f "/\$BUILD_DIR/\$BOARD/zephyr/zmk.uf2" ]; then
+      cp "\$BUILD_DIR/\$BOARD/zephyr/zmk.uf2" "\$OUT_DIR/\${BOARD}.uf2"
+    else
+      DTS_FILES=("zephyr.dts" "zephyr.dts.pre")
+      for DTS_FILE in "\${DTS_FILES[@]}"; do
+        [ -f "/\$BUILD_DIR/\$BOARD/zephyr/\$DTS_FILE" ] && cp  "/\$BUILD_DIR/\$BOARD/zephyr/\$DTS_FILE" "/\$OUT_DIR/\$BOARD\${DTS_FILE#zephyr}"
+      done
+    fi
+  done
+EOF
+
+COPY draw /draw
+COPY --chmod=755 <<EOF /bin/draw.sh
+#!/usr/bin/env bash
+  keymap -c /draw/config.yaml parse -z /config/glove80.keymap
+EOF

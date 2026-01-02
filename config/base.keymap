@@ -12,7 +12,19 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
 
-#include "helper.h"
+#include <zmk-helpers/helper.h>
+
+#undef VARGS_
+#undef VARGS
+#define VARGS_(_20, _19, _18, _17, _16, _15, _14, _13, _12, _11, _10, _9, _8, _7, _6, _5, _4, _3, _2, _1, N, ...) N
+#define VARGS(...) VARGS_(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+
+#define ZMK_TD_LAYER(name, layer) \
+    ZMK_TAP_DANCE(name, \
+        tapping-term-ms = <200>; \
+        bindings = <&mo layer>, <&to layer>; \
+)
+
 #include "keys.h"
 #include "os.h"
 
@@ -47,13 +59,15 @@
 #define LAYER_Magic 21
 #define ALL_LAYERS 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
 
+// Basis for HRM and thumb hold-tap timing
+#define TAPPING_RESOLUTION 175
+
 #include "system.dtsi"
 #include "macros.dtsi"
 #include "combos.dtsi"
 #include "mouse.dtsi"
 #include "behaviors.dtsi"
 #include "hrms.dtsi"
-
 #include "layers.dtsi"
 
 #define BASE   LAYER_ColemakDH

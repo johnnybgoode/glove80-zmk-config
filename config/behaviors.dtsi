@@ -30,11 +30,12 @@ ZMK_MACRO_ONE_PARAM(sk_oneshot,
   , <&macro_tap &sk_qr MACRO_PLACEHOLDER> 
   ;
 )
-// #define STICKY_HOLDING_TIME (TAPPING_RESOLUTION + 25)
-// ZMK_HOLD_TAP(sticky_k_modtap, \
-  // bindings = <&kp>, <&sk_oneshot>; flavor = "tap-preferred"; 
-  // tapping-term-ms = <STICKY_HOLDING_TIME>;
-// )
+#define STICKY_HOLDING_TIME (TAPPING_RESOLUTION + 25)
+ZMK_HOLD_TAP(sk_modtap,
+  bindings = <&kp>, <&sk_oneshot>; flavor = "tap-preferred"; 
+  tapping-term-ms = <STICKY_HOLDING_TIME>;
+)
+
 #define STICKY_1SHOT_DECAY 500
 ZMK_STICKY_KEY(sk_qr,
   bindings = <&kp>; 
