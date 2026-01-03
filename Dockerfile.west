@@ -16,7 +16,8 @@ EOF
 
 ENV PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-COPY config /config
+RUN mkdir /config
+COPY config/west.yml /config
 
 RUN <<EOF
   cd /
