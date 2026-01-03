@@ -36,14 +36,10 @@
 #define MIDDY_FINGER_MOD LGUI
 #define INDEX_FINGER_MOD LCTL
 
-#define LEFT_PINKY_MOD   PINKY_FINGER_MOD
-#define LEFT_RINGY_MOD   RINGY_FINGER_MOD
-#define LEFT_MIDDY_MOD   MIDDY_FINGER_MOD
-#define LEFT_INDEX_MOD   INDEX_FINGER_MOD
-#define RIGHT_PINKY_MOD  PINKY_FINGER_MOD
-#define RIGHT_RINGY_MOD  RINGY_FINGER_MOD
-#define RIGHT_MIDDY_MOD  MIDDY_FINGER_MOD
-#define RIGHT_INDEX_MOD  INDEX_FINGER_MOD
+#define HRM_P            PINKY_FINGER_MOD
+#define HRM_R            RINGY_FINGER_MOD
+#define HRM_M            MIDDY_FINGER_MOD
+#define HRM_I            INDEX_FINGER_MOD
 
 // #define HOMEY_HOLDING_TIME (TAPPING_RESOLUTION + 90) // todo is this used?
 #define INDEX_HOLDING_TIME (TAPPING_RESOLUTION + 40)
@@ -103,42 +99,42 @@ HRM_RIGHT(Ringy, RINGY_FINGER_MOD, RIGHT_RINGY_KEY, RINGY_HOLDING_TIME)
 HRM_RIGHT(Middy, MIDDY_FINGER_MOD, RIGHT_MIDDY_KEY, MIDDY_HOLDING_TIME)
 HRM_RIGHT(Index, INDEX_FINGER_MOD, RIGHT_INDEX_KEY, INDEX_HOLDING_TIME)
 
-#define LeftPinky(KEY) LeftPinky_hmr     PINKY_FINGER_MOD  KEY 
+#define hrml_p(KEY)    LeftPinky_hmr     PINKY_FINGER_MOD  KEY 
 #define LeftPinkyRingy LeftPinky_chord   RINGY_FINGER_MOD  LEFT_RINGY_KEY
 #define LeftPinkyMiddy LeftPinky_chord   MIDDY_FINGER_MOD  LEFT_MIDDY_KEY
 #define LeftPinkyIndex LeftPinky_chord   INDEX_FINGER_MOD  LEFT_INDEX_KEY
 
-#define LeftRingy(KEY) LeftRingy_hmr     RINGY_FINGER_MOD  KEY 
+#define hrml_r(KEY)    LeftRingy_hmr     RINGY_FINGER_MOD  KEY 
 #define LeftRingyPinky LeftRingy_chord   PINKY_FINGER_MOD  LEFT_PINKY_KEY
 #define LeftRingyMiddy LeftRingy_chord   MIDDY_FINGER_MOD  LEFT_MIDDY_KEY
 #define LeftRingyIndex LeftRingy_chord   INDEX_FINGER_MOD  LEFT_INDEX_KEY
 
-#define LeftMiddy(KEY) LeftMiddy_hmr     MIDDY_FINGER_MOD  KEY 
+#define hrml_m(KEY)     LeftMiddy_hmr     MIDDY_FINGER_MOD  KEY 
 #define LeftMiddyPinky LeftMiddy_chord   PINKY_FINGER_MOD  LEFT_PINKY_KEY
 #define LeftMiddyRingy LeftMiddy_chord   RINGY_FINGER_MOD  LEFT_RINGY_KEY
 #define LeftMiddyIndex LeftMiddy_chord   INDEX_FINGER_MOD  LEFT_INDEX_KEY
 
-#define LeftIndex(KEY) LeftIndex_hmr     INDEX_FINGER_MOD  KEY 
+#define hrml_i(KEY)     LeftIndex_hmr     INDEX_FINGER_MOD  KEY 
 #define LeftIndexPinky LeftIndex_chord   PINKY_FINGER_MOD  LEFT_PINKY_KEY
 #define LeftIndexRingy LeftIndex_chord   RINGY_FINGER_MOD  LEFT_RINGY_KEY
 #define LeftIndexMiddy LeftIndex_chord   MIDDY_FINGER_MOD  LEFT_MIDDY_KEY
 
-#define RightPinky(KEY) RightPinky_hmr   PINKY_FINGER_MOD  KEY 
+#define hrmr_p(KEY)     RightPinky_hmr   PINKY_FINGER_MOD  KEY 
 #define RightPinkyRingy RightPinky_chord RINGY_FINGER_MOD  RIGHT_RINGY_KEY
 #define RightPinkyMiddy RightPinky_chord MIDDY_FINGER_MOD  RIGHT_MIDDY_KEY
 #define RightPinkyIndex RightPinky_chord INDEX_FINGER_MOD  RIGHT_INDEX_KEY
 
-#define RightRingy(KEY) RightRingy_hmr   RINGY_FINGER_MOD  KEY 
+#define hrmr_r(KEY)     RightRingy_hmr   RINGY_FINGER_MOD  KEY 
 #define RightRingyPinky RightRingy_chord PINKY_FINGER_MOD  RIGHT_PINKY_KEY
 #define RightRingyMiddy RightRingy_chord MIDDY_FINGER_MOD  RIGHT_MIDDY_KEY
 #define RightRingyIndex RightRingy_chord INDEX_FINGER_MOD  RIGHT_INDEX_KEY
 
-#define RightMiddy(KEY) RightMiddy_hmr   MIDDY_FINGER_MOD  KEY 
+#define hrmr_m(KEY)     RightMiddy_hmr   MIDDY_FINGER_MOD  KEY 
 #define RightMiddyPinky RightMiddy_chord PINKY_FINGER_MOD  RIGHT_PINKY_KEY
 #define RightMiddyRingy RightMiddy_chord RINGY_FINGER_MOD  RIGHT_RINGY_KEY
 #define RightMiddyIndex RightMiddy_chord INDEX_FINGER_MOD  RIGHT_INDEX_KEY
 
-#define RightIndex(KEY) RightIndex_hmr   INDEX_FINGER_MOD  KEY 
+#define hrmr_i(KEY)     RightIndex_hmr   INDEX_FINGER_MOD  KEY 
 #define RightIndexPinky RightIndex_chord PINKY_FINGER_MOD  RIGHT_PINKY_KEY
 #define RightIndexRingy RightIndex_chord RINGY_FINGER_MOD  RIGHT_RINGY_KEY
 #define RightIndexMiddy RightIndex_chord MIDDY_FINGER_MOD  RIGHT_MIDDY_KEY

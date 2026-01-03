@@ -16,7 +16,8 @@ EOF
 
 ENV PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-COPY config /config
+RUN mkdir /config
+COPY config/west.yml /config
 
 RUN <<EOF
   cd /
@@ -24,6 +25,8 @@ RUN <<EOF
   west update --fetch-opt=--filter=blob:none
   west zephyr-export
 EOF
+
+COPY build.yaml /
 
 COPY --chmod=755 <<EOF /bin/build.sh
 #!/usr/bin/env bash
@@ -67,7 +70,7 @@ COPY --chmod=755 <<EOF /bin/build.sh
   )
   CMAKE_EXTRA_MODULES_STRING="\$(IFS=\\; ; echo "\${CMAKE_EXTRA_MODULES[*]}")"
 
-  BOARDS=\$(yq -r "(.include)[] | [.board] | join(\\",\\")" /config/build.yaml)
+  BOARDS=\$(yq -r "(.include)[] | [.board] | join(\\",\\")" /build.yaml)
 
   for BOARD in \$BOARDS; do
     west build -s /zmk/app -d "/\$BUILD_DIR/\$BOARD" -b \$BOARD \${BUILD_ARGS[@]} -- \\

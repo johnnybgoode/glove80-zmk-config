@@ -1,0 +1,55 @@
+GLV80_LAYER_HRML(LeftPinky,
+    &tap_LeftPinky KEY_LH_C6R3    &tap_LeftPinky KEY_LH_C5R3        &tap_LeftPinky KEY_LH_C4R3        &tap_LeftPinky KEY_LH_C3R3        &tap_LeftPinky KEY_LH_C2R3    &tap_LeftPinky KEY_LH_C1R3,
+    &tap_LeftPinky KEY_LH_C6R4                         &none                   &LeftPinkyRingy                   &LeftPinkyMiddy                   &LeftPinkyIndex    &tap_LeftPinky KEY_LH_C1R4,
+                        &trans    &tap_LeftPinky KEY_LH_C5R5        &tap_LeftPinky KEY_LH_C4R5        &tap_LeftPinky KEY_LH_C3R5        &tap_LeftPinky KEY_LH_C2R5    &tap_LeftPinky KEY_LH_C1R5,    &mo LAY_LH_T1    &tap_LeftPinky KEY_LH_T2    &tap_LeftPinky KEY_LH_T3,
+                        &trans    &tap_LeftPinky KEY_LH_C5R6        &tap_LeftPinky KEY_LH_C4R6        &tap_LeftPinky KEY_LH_C3R6                  &mo LAY_LH_C2R6,                                   &mo LAY_LH_T4               &mo LAY_LH_T5    &mo LAY_LH_T6
+)
+
+GLV80_LAYER_HRML(LeftRingy,
+    &tap_LeftRingy KEY_LH_C6R3        &tap_LeftRingy KEY_LH_C5R3    &tap_LeftRingy KEY_LH_C4R3        &tap_LeftRingy KEY_LH_C3R3        &tap_LeftRingy KEY_LH_C2R3    &tap_LeftRingy KEY_LH_C1R3,
+    &tap_LeftRingy KEY_LH_C6R4                   &LeftRingyPinky                         &none                   &LeftRingyMiddy                   &LeftRingyIndex    &tap_LeftRingy KEY_LH_C1R4,
+                        &trans        &tap_LeftRingy KEY_LH_C5R5    &tap_LeftRingy KEY_LH_C4R5        &tap_LeftRingy KEY_LH_C3R5        &tap_LeftRingy KEY_LH_C2R5    &tap_LeftRingy KEY_LH_C1R5,    &mo LAY_LH_T1    &tap_LeftRingy KEY_LH_T2    &tap_LeftRingy KEY_LH_T3,
+                        &trans        &tap_LeftRingy KEY_LH_C5R6    &tap_LeftRingy KEY_LH_C4R6        &tap_LeftRingy KEY_LH_C3R6                  &mo LAY_LH_C2R6,                                   &mo LAY_LH_T4               &mo LAY_LH_T5    &mo LAY_LH_T6
+)
+
+GLV80_LAYER_HRML(LeftMiddy,
+    &tap_LeftMiddy KEY_LH_C6R3        &tap_LeftMiddy KEY_LH_C5R3        &tap_LeftMiddy KEY_LH_C4R3    &tap_LeftMiddy KEY_LH_C3R3        &tap_LeftMiddy KEY_LH_C2R3    &tap_LeftMiddy KEY_LH_C1R3,
+    &tap_LeftMiddy KEY_LH_C6R4                   &LeftMiddyPinky                   &LeftMiddyRingy                         &none                   &LeftMiddyIndex    &tap_LeftMiddy KEY_LH_C1R4,
+                        &trans        &tap_LeftMiddy KEY_LH_C5R5        &tap_LeftMiddy KEY_LH_C4R5    &tap_LeftMiddy KEY_LH_C3R5        &tap_LeftMiddy KEY_LH_C2R5    &tap_LeftMiddy KEY_LH_C1R5,    &mo LAY_LH_T1    &tap_LeftMiddy KEY_LH_T2    &tap_LeftMiddy KEY_LH_T3,
+                        &trans        &tap_LeftMiddy KEY_LH_C5R6        &tap_LeftMiddy KEY_LH_C4R6    &tap_LeftMiddy KEY_LH_C3R6                  &mo LAY_LH_C2R6,                                   &mo LAY_LH_T4               &mo LAY_LH_T5    &mo LAY_LH_T6
+)
+
+GLV80_LAYER_HRML(LeftIndex,
+    &tap_LeftIndex KEY_LH_C6R3        &tap_LeftIndex KEY_LH_C5R3        &tap_LeftIndex KEY_LH_C4R3        &tap_LeftIndex KEY_LH_C3R3    &tap_LeftIndex KEY_LH_C2R3    &tap_LeftIndex KEY_LH_C1R3,
+    &tap_LeftIndex KEY_LH_C6R4                   &LeftIndexPinky                   &LeftIndexRingy                   &LeftIndexMiddy                         &none    &tap_LeftIndex KEY_LH_C1R4,
+                        &trans        &tap_LeftIndex KEY_LH_C5R5        &tap_LeftIndex KEY_LH_C4R5        &tap_LeftIndex KEY_LH_C3R5    &tap_LeftIndex KEY_LH_C2R5    &tap_LeftIndex KEY_LH_C1R5,    &mo LAY_LH_T1    &tap_LeftIndex KEY_LH_T2    &tap_LeftIndex KEY_LH_T3,
+                        &trans        &tap_LeftIndex KEY_LH_C5R6        &tap_LeftIndex KEY_LH_C4R6        &tap_LeftIndex KEY_LH_C3R6              &mo LAY_LH_C2R6,                                   &mo LAY_LH_T4               &mo LAY_LH_T5    &mo LAY_LH_T6
+)
+
+GLV80_LAYER_HRMR(RightPinky,  
+                                                                                &tap_RightPinky KEY_RH_C1R3         &tap_RightPinky KEY_RH_C2R3         &tap_RightPinky KEY_RH_C3R3         &tap_RightPinky KEY_RH_C4R3    &tap_RightPinky KEY_RH_C5R3    &tap_RightPinky KEY_RH_C6R3,
+                                                                                &tap_RightPinky KEY_RH_C1R4                    &RightPinkyIndex                    &RightPinkyMiddy                    &RightPinkyRingy                          &none    &tap_RightPinky KEY_RH_C6R4,
+    &tap_RightPinky KEY_RH_T3    &tap_RightPinky KEY_RH_T2    &mo LAY_RH_T1,    &tap_RightPinky KEY_RH_C1R5         &tap_RightPinky KEY_RH_C2R5         &tap_RightPinky KEY_RH_C3R5         &tap_RightPinky KEY_RH_C4R5    &tap_RightPinky KEY_RH_C5R5    &trans,
+                &mo LAY_RH_T6                &mo LAY_RH_T5    &mo LAY_RH_T4,                                        &tap_RightPinky KEY_RH_C2R6         &tap_RightPinky KEY_RH_C3R6         &tap_RightPinky KEY_RH_C4R6    &tap_RightPinky KEY_RH_C5R6    &trans
+)
+
+GLV80_LAYER_HRMR(RightRingy,
+                                                                                &tap_RightRingy KEY_RH_C1R3         &tap_RightRingy KEY_RH_C2R3         &tap_RightRingy KEY_RH_C3R3    &tap_RightRingy KEY_RH_C4R3         &tap_RightRingy KEY_RH_C5R3    &tap_RightRingy KEY_RH_C6R3,
+                                                                                &tap_RightRingy KEY_RH_C1R4                    &RightRingyIndex                    &RightRingyMiddy                          &none                    &RightRingyPinky    &tap_RightRingy KEY_RH_C6R4,
+    &tap_RightRingy KEY_RH_T3    &tap_RightRingy KEY_RH_T2    &mo LAY_RH_T1,    &tap_RightRingy KEY_RH_C1R5         &tap_RightRingy KEY_RH_C2R5         &tap_RightRingy KEY_RH_C3R5    &tap_RightRingy KEY_RH_C4R5         &tap_RightRingy KEY_RH_C5R5    &trans,
+                &mo LAY_RH_T6                &mo LAY_RH_T5    &mo LAY_RH_T4,                                        &tap_RightRingy KEY_RH_C2R6         &tap_RightRingy KEY_RH_C3R6    &tap_RightRingy KEY_RH_C4R6         &tap_RightRingy KEY_RH_C5R6    &trans 
+)
+
+GLV80_LAYER_HRMR(RightMiddy,
+                                                                                &tap_RightMiddy KEY_RH_C1R3         &tap_RightMiddy KEY_RH_C2R3    &tap_RightMiddy KEY_RH_C3R3         &tap_RightMiddy KEY_RH_C4R3         &tap_RightMiddy KEY_RH_C5R3    &tap_RightMiddy KEY_RH_C6R3,
+                                                                                &tap_RightMiddy KEY_RH_C1R4                    &RightMiddyIndex                          &none                    &RightMiddyRingy                    &RightMiddyPinky    &tap_RightMiddy KEY_RH_C6R4,
+    &tap_RightMiddy KEY_RH_T3    &tap_RightMiddy KEY_RH_T2    &mo LAY_RH_T1,    &tap_RightMiddy KEY_RH_C1R5         &tap_RightMiddy KEY_RH_C2R5    &tap_RightMiddy KEY_RH_C3R5         &tap_RightMiddy KEY_RH_C4R5         &tap_RightMiddy KEY_RH_C5R5    &trans,
+                &mo LAY_RH_T6                &mo LAY_RH_T5    &mo LAY_RH_T4,                                        &tap_RightMiddy KEY_RH_C2R6    &tap_RightMiddy KEY_RH_C3R6         &tap_RightMiddy KEY_RH_C4R6         &tap_RightMiddy KEY_RH_C5R6    &trans 
+)
+
+GLV80_LAYER_HRMR(RightIndex,
+                                                                                &tap_RightIndex KEY_RH_C1R3    &tap_RightIndex KEY_RH_C2R3         &tap_RightIndex KEY_RH_C3R3         &tap_RightIndex KEY_RH_C4R3         &tap_RightIndex KEY_RH_C5R3    &tap_RightIndex KEY_RH_C6R3,
+                                                                                &tap_RightIndex KEY_RH_C1R4                          &none                    &RightIndexMiddy                    &RightIndexRingy                    &RightIndexPinky    &tap_RightIndex KEY_RH_C6R4,
+    &tap_RightIndex KEY_RH_T3    &tap_RightIndex KEY_RH_T2    &mo LAY_RH_T1,    &tap_RightIndex KEY_RH_C1R5    &tap_RightIndex KEY_RH_C2R5         &tap_RightIndex KEY_RH_C3R5         &tap_RightIndex KEY_RH_C4R5         &tap_RightIndex KEY_RH_C5R5    &trans,
+                &mo LAY_RH_T6                &mo LAY_RH_T5    &mo LAY_RH_T4,                                   &tap_RightIndex KEY_RH_C2R6         &tap_RightIndex KEY_RH_C3R6         &tap_RightIndex KEY_RH_C4R6         &tap_RightIndex KEY_RH_C5R6    &trans 
+)
