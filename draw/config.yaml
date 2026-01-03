@@ -9,7 +9,6 @@ parse_config:
     "&sys_reset": Reset
     "&bootloader": Boot
     "&caps_word": Caps Word
-    "&lower": Lower
 
     "&bt_0": BT 1
     "&bt_1": BT 2

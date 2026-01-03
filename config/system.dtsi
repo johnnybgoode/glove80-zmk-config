@@ -1,4 +1,3 @@
-ZMK_TD_LAYER(lower, LAYER_Lower)
 ZMK_MACRO(rgb_ug_status_macro, bindings = <&rgb_ug RGB_STATUS>;)
 ZMK_HOLD_TAP(mag,
     bindings = <&mo>, <&rgb_ug_status_macro>; 

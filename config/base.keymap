@@ -54,9 +54,8 @@
 #define LAYER_MouseSlow 16
 #define LAYER_MouseFast 17
 #define LAYER_MouseWarp 18
-#define LAYER_Lower 19
-#define LAYER_Magic 20
-#define ALL_LAYERS 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+#define LAYER_Magic 19
+#define ALL_LAYERS 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
 
 // Basis for HRM and thumb hold-tap timing
 #define TAPPING_RESOLUTION 175
@@ -80,7 +79,6 @@
 #define MSEF   LAYER_MouseFast
 #define MSES   LAYER_MouseSlow
 #define MSEI   LAYER_MouseFine
-#define LWR    LAYER_Lower
 #define MAG    LAYER_Magic
 
 GLV80_LAYER(ColemakDH,
@@ -136,14 +134,6 @@ GLV80_LAYER(Mouse,
 )
 
 #include "mouse_warp_layers.dtsi"
-
-GLV80_LAYER(Lower,
-  &none  &none  &none  &none      &none  &none,                                                            &kp KP_CLEAR  &kp KP_N7     &kp KP_N8   &kp KP_N9  &kp KP_MINUS  &kp FSLH,
-  &none  &none  &none  &none      &none  &none,                                                             &kp KP_LPAR  &kp KP_N4     &kp KP_N5   &kp KP_N6   &kp KP_PLUS  &kp KP_MULTIPLY,
-  &none  &none  &none  &none      &none  &none,                                                             &kp KP_RPAR  &kp KP_N1     &kp KP_N2   &kp KP_N3  &kp KP_ENTER  &kp KP_EQUAL,
-  &none  &none  &none  &none      &none  &none,  &tog FUNC     &none  &none,  &none     &none  &tog TYPG,         &none  &kp KP_N0  &kp KP_COMMA  &kp KP_DOT  &kp KP_ENTER  &none,
-  &none  &none  &none  &none  &to BASE,          &tog CURS  &tog NUM  &none,  &none  &tog MSE   &tog SYM,                    &none         &none       &none         &none  &none
-)
 
 GLV80_LAYER(Magic,
    &bt BT_CLR            &none            &none            &none           &none,                                                                                            &none  &none  &none  &none  &bt BT_CLR_ALL,
