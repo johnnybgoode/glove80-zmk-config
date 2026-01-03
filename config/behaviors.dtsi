@@ -1,27 +1,73 @@
 #define THUMB_HOLDING_TIME 150
-ZMK_HOLD_TAP(thm, 
-    bindings = <&mo>, <&kp>; flavor = "balanced"; 
-    tapping-term-ms = <THUMB_HOLDING_TIME>; quick-tap-ms = <300>;
-)
-#define SPACE_HOLDING_TIME 250
+#define THUMB_REPEAT_DECAY 350
+
+#define THUMB_HOLD_TAP(NAME, BINDING1 , BINDING2)                                 \
+  ZMK_HOLD_TAP(NAME, bindings = <BINDING1>, <BINDING2>; flavor = "balanced";      \
+    tapping-term-ms = <THUMB_HOLDING_TIME>; quick-tap-ms = <THUMB_REPEAT_DECAY>;)
+
+#define TD_TERM_FAST 180
+#define TD_TERM_NORM 200
+#define TD_TERM_SLOW 300
+#define TAP_DANCE_NORM(NAME, BINDING1, BINDING2)                                  \
+  ZMK_TAP_DANCE(NAME, bindings = <BINDING1>, <BINDING2>;                          \
+    tapping-term-ms = <TD_TERM_NORM>;)
+
+#define TAP_DANCE_SLOW(NAME, BINDING1, BINDING2)                                  \
+  ZMK_TAP_DANCE(NAME, bindings = <BINDING1>, <BINDING2>;                          \
+    tapping-term-ms = <TD_TERM_SLOW>;)
+
+#define SIMPLE_MORPH(NAME, MOD, BINDING1, BINDING2)                               \
+  ZMK_MOD_MORPH(NAME, mods = <(MOD_L##MOD | MOD_R##MOD)>;                         \
+                bindings = <BINDING1>, <BINDING2>;)
+
+THUMB_HOLD_TAP(thm, &mo, &kp)
+
+// Tap: BACKSPACE | double-tap: nav_word | Hold: nav(cursor)-layer.
+#define SMART_NAV &smart_nav CURS 0
+ZMK_AUTO_LAYER(nav_word,
+  continue-list = <LEFT DOWN UP RIGHT CUT _COPY _PASTE LSFT RSFT \
+  _HOME PG_DN PG_UP _END>;)
+THUMB_HOLD_TAP(smart_nav, &mo, &nav_dance)
+ZMK_TAP_DANCE(nav_dance, 
+  bindings = <&kp BSPC>, <&nav_word CURS>, <&kp BSPC>;
+  tapping-term-ms = <TD_TERM_FAST>;)
+
+// Tap: DELETE | double-tap: num_word | Hold: num-layer.
+#define SMART_NUM &smart_num NUM 0
+THUMB_HOLD_TAP(smart_num, &mo, &num_dance)
+ZMK_TAP_DANCE(num_dance, 
+  bindings = <&kp DELETE>, <&num_word NUM>, <&kp DELETE>;
+  tapping-term-ms = <TD_TERM_NORM>;)
+
+// TODO will this work or need tri-state?
+// Tap: TAB | double-tap: mouse_word | hold: mse-layer.
+// #define MV_LEFT = &mmv MOVE_LEFT
+// #define SMART_MOUSE &smart_mse MSE 0
+// ZMK_AUTO_LAYER(mouse_word,
+//   continue-list = <MV_LEFT>;
+//   ignore-modifiers;)
+// THUMB_HOLD_TAP(smart_mse, &mo, &mse_dance)
+// ZMK_TAP_DANCE(mse_dance,
+//   bindings = <&kp TAB>, <&mouse_word MSE>, <&kp TAB>;
+//   tapping-term-ms = <TD_TERM_NORM>;)
+
+#define SPACE_HOLDING_TIME 200
+#define SPACE_REPEAT_DECAY SPACE_HOLDING_TIME
 ZMK_HOLD_TAP(spc,
     bindings = <&mo>, <&kp>; flavor = "balanced"; 
-    tapping-term-ms = <SPACE_HOLDING_TIME>; quick-tap-ms = <200>;
-)
-#define TD_HOLDING_TIME 300
-ZMK_TAP_DANCE(sft_capsw, 
-    bindings = <&sk_oneshot LSFT>, <&caps_word>; 
-    tapping-term-ms = <TD_HOLDING_TIME>;
-)
-ZMK_MOD_MORPH(parang_l,
-    bindings = <&kp LPAR>, <&kp LT>; 
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-) 
-ZMK_MOD_MORPH(parang_r,
-    bindings = <&kp RPAR>, <&kp GT>; 
-    mods = <(MOD_LSFT|MOD_RSFT)>;
+    tapping-term-ms = <SPACE_HOLDING_TIME>; quick-tap-ms = <SPACE_REPEAT_DECAY>;
 )
 
+SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT) 
+SIMPLE_MORPH(lpar_gt, SFT, &kp RPAR, &kp GT)
+
+TAP_DANCE_SLOW(sft_capsw,  &sk_oneshot LSFT, &caps_word)
+TAP_DANCE_SLOW(semi_comma, &kp COMMA, &kp SEMI)
+
+TAP_DANCE_NORM(vimQuit, &kp Q, &q_bang)
+
+#define STICKY_HOLDING_TIME (TAPPING_RESOLUTION + 25)
+#define STICKY_1SHOT_DECAY 500
 ZMK_MACRO_ONE_PARAM(sk_oneshot,
   wait-ms = <0>;
   tap-ms = <0>; 
@@ -30,13 +76,10 @@ ZMK_MACRO_ONE_PARAM(sk_oneshot,
   , <&macro_tap &sk_qr MACRO_PLACEHOLDER> 
   ;
 )
-#define STICKY_HOLDING_TIME (TAPPING_RESOLUTION + 25)
 ZMK_HOLD_TAP(sk_modtap,
   bindings = <&kp>, <&sk_oneshot>; flavor = "tap-preferred"; 
   tapping-term-ms = <STICKY_HOLDING_TIME>;
 )
-
-#define STICKY_1SHOT_DECAY 500
 ZMK_STICKY_KEY(sk_qr,
   bindings = <&kp>; 
   release-after-ms = <STICKY_1SHOT_DECAY>; quick-release; ignore-modifiers;

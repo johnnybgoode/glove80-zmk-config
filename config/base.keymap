@@ -16,20 +16,9 @@
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
+#include <behaviors/num_word.dtsi>
 #include <zmk-helpers/helper.h>
 
-#undef VARGS_
-#undef VARGS
-#define VARGS_(_20, _19, _18, _17, _16, _15, _14, _13, _12, _11, _10, _9, _8, _7, _6, _5, _4, _3, _2, _1, N, ...) N
-#define VARGS(...) VARGS_(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
-
-#define ZMK_TD_LAYER(name, layer) \
-    ZMK_TAP_DANCE(name, \
-        tapping-term-ms = <200>; \
-        bindings = <&mo layer>, <&to layer>; \
-)
-
-//#include "helper.h"
 #include "keys.h"
 #include "os.h"
 
@@ -60,14 +49,6 @@
 // Basis for HRM and thumb hold-tap timing
 #define TAPPING_RESOLUTION 175
 
-#include "system.dtsi"
-#include "macros.dtsi"
-#include "combos.dtsi"
-#include "mouse.dtsi"
-#include "behaviors.dtsi"
-#include "hrms.dtsi"
-#include "layers.dtsi"
-
 #define BASE   LAYER_ColemakDH
 #define TYPG   LAYER_Typing
 #define CURS   LAYER_Cursor
@@ -81,11 +62,19 @@
 #define MSEI   LAYER_MouseFine
 #define MAG    LAYER_Magic
 
+#include "system.dtsi"
+#include "macros.dtsi"
+#include "combos.dtsi"
+#include "mouse.dtsi"
+#include "behaviors.dtsi"
+#include "hrms.dtsi"
+#include "layers.dtsi"
+
 GLV80_LAYER(ColemakDH,
-   &kp GRAVE      &kp Q      &kp W      &kp F           &kp P  &kp B,                                                                                                     &kp J      &kp L        &kp U        &kp Y   &kp SEMI  &kp MINUS,
-  &sft_capsw  &hrml_p A  &hrml_r R  &hrml_m S       &hrml_i T  &kp G,                                                                                                     &kp M  &hrmr_i N    &hrmr_m E    &hrmr_r I  &hrmr_p O  &kp SQT,
-       &none      &kp Z      &kp X      &kp C           &kp D  &kp V,        &thm FUNC ESC        &parang_l         &parang_r,  &kp _HOME      &kp _END  &thm MAG ENTER,  &kp K      &kp H    &kp COMMA      &kp DOT   &kp FSLH  &sft_capsw,
-  &mag MAG 0  &kp EQUAL   &kp LBKT   &kp RBKT  &thm MSE BSLH,          &thm CURS BACKSPACE  &thm NUM DELETE  &thm TYPG INSERT,  &tog TYPG  &thm MSE TAB  &spc SYM SPACE,         &kp PG_DN  &msc MSC_DN  &msc MSC_UP  &kp PG_UP  &mag MAG 0
+   &kp GRAVE   &vimQuit      &kp W      &kp F           &kp P  &kp B,                                                                                          &kp J      &kp L        &kp U        &kp Y   &kp SEMI  &kp MINUS,
+  &sft_capsw  &hrml_p A  &hrml_r R  &hrml_m S       &hrml_i T  &kp G,                                                                                          &kp M  &hrmr_i N    &hrmr_m E    &hrmr_r I  &hrmr_p O  &kp SQT,
+       &none      &kp Z      &kp X      &kp C           &kp D  &kp V,  &thm FUNC ESC    &lpar_lt          &lpar_gt,  &kp _HOME      &kp _END  &thm MAG ENTER,  &kp K      &kp H  &semi_comma      &kp DOT   &kp FSLH  &sft_capsw,
+  &mag MAG 0  &kp EQUAL   &kp LBKT   &kp RBKT  &thm MSE BSLH,              SMART_NAV   SMART_NUM  &thm TYPG INSERT,  &tog TYPG  &thm MSE TAB  &spc SYM SPACE,         &kp PG_DN  &msc MSC_DN  &msc MSC_UP  &kp PG_UP  &mag MAG 0
 )
 
 GLV80_LAYER(Typing,
@@ -98,17 +87,16 @@ GLV80_LAYER(Typing,
 #include "hrm_bilateral_layers.dtsi"
 
 GLV80_LAYER(Cursor,
-      &none      &kp RET     &kp SPACE         &kp TAB         &kp BSPC    &kp _CUT,                                                                         &kp _CUT  &kp LS(TAB)       &kp _UNDO       &kp _REDO    &kp TAB  &none,
   &sk LSHFT    &kp HRM_P     &kp HRM_R       &kp HRM_M        &kp HRM_I   &kp _COPY,                                                                        &kp _COPY     &kp LEFT        &kp DOWN          &kp UP  &kp RIGHT  &sk LSHFT,
-  &kp _C(L)  &select_all  &select_line    &select_word        &kp _FIND  &kp _PASTE,      &none  &none  &none,  &select_none  &extend_line  &extend_word,  &kp _PASTE    &kp _HOME       &kp PG_DN       &kp PG_UP   &kp _END  &kp _C(L),
+  &kp _C(L)  &select_all  &select_line    &select_word        &kp _FIND  &kp _PASTE,    &kp ESC  &none  &none,  &select_none  &extend_line  &extend_word,  &kp _PASTE    &kp _HOME       &kp PG_DN       &kp PG_UP   &kp _END  &kp _C(L),
   &kp _C(K)    &kp _UNDO     &kp _REDO  &kp _FIND_PREV  &kp _FIND_NEXT,               &tog CURS  &none  &none,   &select_all  &select_line  &select_word,                &kp _FIND  &kp _FIND_PREV  &kp _FIND_NEXT  &kp _C(H)  &kp _C(K)
 )
 
 GLV80_LAYER(Number,
-          &kp E      &kp RET     &kp SPACE         &kp TAB         &kp BSPC  &kp N0,                                                                   &kp LS(G)      &kp N7    &kp N8    &kp N9  &kp LS(SEMI)  &kp LS(N5),
-      &sk LSHFT    &kp HRM_P     &kp HRM_R       &kp HRM_M        &kp HRM_I   &kp X,                                                                       &kp K      &kp N4    &kp N5    &kp N6     &kp MINUS  &kp LS(EQUAL),
-  &kp LS(MINUS)  &select_all  &select_line    &select_word        &kp _FIND   &kp F,  &none     &none  &none,  &kp LS(COMMA)  &kp LS(DOT)  &kp COMMA,      &kp J      &kp N1    &kp N2    &kp N3      &kp FSLH  &kp LS(N8),
-          &none    &kp _UNDO     &kp _REDO  &kp _FIND_PREV  &kp _FIND_NEXT,           &none  &tog NUM  &none,      &kp EQUAL      &kp DOT     &kp N0,             &kp LS(N9)  &kp LBKT  &kp RBKT    &kp LS(N0)  &kp LS(N2)
+          &kp E      &kp RET     &kp SPACE         &kp TAB         &kp BSPC  &kp N0,                                                                    &kp LS(G)      &kp N7    &kp N8    &kp N9  &kp LS(SEMI)  &kp LS(N5),
+      &sk LSHFT    &kp HRM_P     &kp HRM_R       &kp HRM_M        &kp HRM_I   &kp X,                                                                        &kp K      &kp N4    &kp N5    &kp N6     &kp MINUS  &kp LS(EQUAL),
+  &kp LS(MINUS)  &select_all  &select_line    &select_word        &kp _FIND   &kp F,  &kp ESC     &none  &none,  &kp LS(COMMA)  &kp LS(DOT)  &kp COMMA,     &kp J      &kp N1    &kp N2    &kp N3      &kp FSLH  &kp LS(N8),
+          &none    &kp _UNDO     &kp _REDO  &kp _FIND_PREV  &kp _FIND_NEXT,             &none  &tog NUM  &none,      &kp EQUAL      &kp DOT     &kp N0,            &kp LS(N9)  &kp LBKT  &kp RBKT    &kp LS(N0)  &kp LS(N2)
 )
 
 GLV80_LAYER(Function,

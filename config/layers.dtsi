@@ -1,3 +1,8 @@
+#undef VARGS_
+#undef VARGS
+#define VARGS_(_20, _19, _18, _17, _16, _15, _14, _13, _12, _11, _10, _9, _8, _7, _6, _5, _4, _3, _2, _1, N, ...) N
+#define VARGS(...) VARGS_(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+
 #define GLV80_LAYER(...) CONCAT(GLV80_LAYER_, VARGS(__VA_ARGS__))(__VA_ARGS__)
 #define GLV80_LAYER_13(NAME, LU, RU, LH, RH, LL, LT1, RT1, RL, LB, LT2, RT2, RB)                \
   GLV80_LAYER_15(                                                                               \

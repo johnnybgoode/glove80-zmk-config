@@ -118,3 +118,16 @@ ZMK_MACRO(extend_line_left,
   tap-ms = <SELECT_WORD_DELAY>;
   bindings = <&kp LS(UP) &kp LS(_HOME)>;
 )
+
+// Vim macros
+ZMK_MACRO(cln_w_q,
+  wait-ms = <0>;
+  tap-ms = <0>;
+  bindings = <&kp ESC &kp LS(SEMI) &kp W &kp Q>;
+)
+
+ZMK_MACRO(q_bang,
+  wait-ms = <0>;
+  tap-ms = <0>;
+  bindings = <&kp ESC &kp LS(SEMI) &kp Q &kp LS(N1)>;
+)
