@@ -22,3 +22,7 @@ ZMK_COMBO_TYPE(toggle_typing, &tog LAYER_Typing, RL0 RB1)
 
 ZMK_COMBO_ALL(base_reset_l, &to LAYER_Base, LT1 LT2 LT3)
 ZMK_COMBO_ALL(base_reset_r, &to LAYER_Base, RT1 RT2 RT3)
+
+// ZMK_COMBO_TYPE(smart_nav_l, &)
+// Vim combos
+ZMK_COMBO_BASE(write_quit, &cln_w_q, LU4 LU3)
