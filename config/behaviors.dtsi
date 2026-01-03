@@ -1,5 +1,5 @@
 #define THUMB_HOLDING_TIME 150
-ZMK_HOLD_TAP(thumb, 
+ZMK_HOLD_TAP(thm, 
     bindings = <&mo>, <&kp>; flavor = "balanced"; 
     tapping-term-ms = <THUMB_HOLDING_TIME>; quick-tap-ms = <300>;
 )
@@ -13,11 +13,11 @@ ZMK_TAP_DANCE(sft_capsw,
     bindings = <&sk_oneshot LSFT>, <&caps_word>; 
     tapping-term-ms = <TD_HOLDING_TIME>;
 )
-ZMK_MOD_MORPH(parang_left,
+ZMK_MOD_MORPH(parang_l,
     bindings = <&kp LPAR>, <&kp LT>; 
     mods = <(MOD_LSFT|MOD_RSFT)>;
 ) 
-ZMK_MOD_MORPH(parang_right,
+ZMK_MOD_MORPH(parang_r,
     bindings = <&kp RPAR>, <&kp GT>; 
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
