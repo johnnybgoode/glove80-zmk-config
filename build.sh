@@ -10,6 +10,8 @@ usage() {
 IMAGE=glove80-zmk-config-docker
 BRANCH="main"  # "${1:-main}"
 INTERACTIVE="n"
+CONFDIR="${PWD}/config"
+BUILDDIR="${PWD}/_build"
 
 while getopts ":ib:h" opt; do
   case ${opt} in
@@ -37,8 +39,8 @@ mkdir -p _build
 docker build -t "$IMAGE" --build-arg CACHEBUST=$(date +%s) .
 
 if [ $INTERACTIVE == "y" ]; then
-  docker run -i -t -v "$PWD:/config" -e UID="$(id -u)" -e GID="$(id -g)" --entrypoint /bin/sh -e BRANCH="$BRANCH" "$IMAGE"
+  docker run -it --rm -v "$CONFDIR:/config" -v "$BUILDDIR:/_build" -e UID="$(id -u)" -e GID="$(id -g)" -e BRANCH="$BRANCH" "$IMAGE" /bin/sh 
 else
-  docker run -v "$PWD:/config" -e UID="$(id -u)" -e GID="$(id -g)" -e BRANCH="$BRANCH" "$IMAGE"
+  docker run --rm -v "$CONFDIR:/config" -v "$BUILDDIR:/_build" -e UID="$(id -u)" -e GID="$(id -g)" -e BRANCH="$BRANCH" "$IMAGE"
 fi
 

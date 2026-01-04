@@ -34,11 +34,18 @@ COPY --chmod=755 <<EOF /bin/entrypoint.sh
     cd /src
     git fetch origin
     git checkout -q --detach "\$BRANCH"
+    
+    # NIX_EXPERIMENTAL="--extra-experimental-features nix-command"
+    # nix shell "$NIX_EXPERIMENTAL" -f . west -c west init -l /config
+    # cd /
+    # nix shell "$NIX_EXPERIMENTAL" -f /src/default.nix west -c west update
+    # nix shell "$NIX_EXPERIMENTAL" -f /src/default.nix update-manifest -c update-manifest > /src/nix/manifest.json 
 
+    mkdir /build
     echo 'Building Glove80 firmware' >&2
     cd /config
-    nix-build ./config --arg firmware 'import /src/default.nix {}' -j2 -o /tmp/combined --show-trace -K
-    install -o "\$UID" -g "\$GID" /tmp/combined/glove80.uf2 ./_build/`date +"%s"`.uf2
+    nix-build . --arg firmware 'import /src/default.nix {}' -j2 -o /build/combined --show-trace -K
+    install -o "\$UID" -g "\$GID" /build/combined/glove80.uf2 /_build/`date +"%s"`.uf2
 EOF
 
 ENTRYPOINT ["/bin/entrypoint.sh"]
