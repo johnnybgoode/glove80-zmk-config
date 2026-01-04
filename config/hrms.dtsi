@@ -41,32 +41,36 @@
 #define HRM_M            MIDDY_FINGER_MOD
 #define HRM_I            INDEX_FINGER_MOD
 
-// #define HOMEY_HOLDING_TIME (TAPPING_RESOLUTION + 90) // todo is this used?
-#define INDEX_HOLDING_TIME (TAPPING_RESOLUTION + 40)
-#define MIDDY_HOLDING_TIME (INDEX_HOLDING_TIME + 20)
-#define RINGY_HOLDING_TIME (MIDDY_HOLDING_TIME + 20)
-#define PINKY_HOLDING_TIME (TAPPING_RESOLUTION + 25)
+#define INDEX_HOLDING_TIME (TAPPING_RESOLUTION + 30)    // 205
+#define MIDDY_HOLDING_TIME (INDEX_HOLDING_TIME + 30)    // 235
+#define RINGY_HOLDING_TIME (MIDDY_HOLDING_TIME + 30)    // 265
+#define PINKY_HOLDING_TIME (TAPPING_RESOLUTION + 25)    // 200
 
 #define CHORD_HOLDING_TIME TAPPING_RESOLUTION
 
 #define HOMEY_STREAK_DECAY TAPPING_RESOLUTION
+#define INDEX_STREAK_DECAY HOMEY_STREAK_DECAY
+#define MIDDY_STREAK_DECAY HOMEY_STREAK_DECAY
+#define RINGY_STREAK_DECAY HOMEY_STREAK_DECAY
+#define PINKY_STREAK_DECAY (TAPPING_RESOLUTION - 25)    // 150
+
 #define HOMEY_REPEAT_DECAY (TAPPING_RESOLUTION + 125)
 
-#define HRM_LEFT(FINGER, HOLD, TAP, HOLD_MS) \
-  HRM(Left##FINGER, HOLD, TAP, HOLD_MS, RIGHT_HAND_KEYS)
+#define HRM_LEFT(FINGER, TAP, HOLD_MS, IDLE_MS) \
+  HRM(Left##FINGER, TAP, HOLD_MS, IDLE_MS, RIGHT_HAND_KEYS)
 
-#define HRM_RIGHT(FINGER, HOLD, TAP, HOLD_MS) \
-  HRM(Right##FINGER, HOLD, TAP, HOLD_MS, LEFT_HAND_KEYS)
+#define HRM_RIGHT(FINGER, TAP, HOLD_MS, IDLE_MS) \
+  HRM(Right##FINGER, TAP, HOLD_MS, IDLE_MS, LEFT_HAND_KEYS)
 
-#define HRM(NAME, HOLD, TAP, HOLD_MS, TRIGGER_KEYS)                                         \
+#define HRM(NAME, TAP, HOLD_MS, IDLE_MS, TRIGGER_KEYS)                                      \
   ZMK_HOLD_TAP(NAME ## _hmr, bindings = <&hold_ ## NAME>, <&kp>; flavor = "tap-preferred";  \
                tapping-term-ms = <HOLD_MS>; quick-tap-ms = <HOMEY_REPEAT_DECAY>;            \
-               require-prior-idle-ms = <HOMEY_STREAK_DECAY>;                                \
+               require-prior-idle-ms = <IDLE_MS>;                                           \
                hold-trigger-on-release; hold-trigger-key-positions = <TRIGGER_KEYS>;)       \
                                                                                             \
   ZMK_HOLD_TAP(NAME ## _chord, bindings = <&kp>, <&tap_ ## NAME>; flavor = "tap-preferred"; \
                tapping-term-ms = <HOLD_MS>; quick-tap-ms = <HOMEY_REPEAT_DECAY>;            \
-               require-prior-idle-ms = <HOMEY_STREAK_DECAY>;                                \
+               require-prior-idle-ms = <IDLE_MS>;                                           \
                hold-trigger-on-release; hold-trigger-key-positions = <TRIGGER_KEYS>;)       \
                                                                                             \
   ZMK_MACRO_ONE_PARAM(hold_ ## NAME, wait-ms = <0>; tap-ms = <0>;                           \
@@ -90,14 +94,14 @@
                 , <&macro_param_1to1>                                                       \
                 , <&macro_tap &kp MACRO_PLACEHOLDER>;)
 
-HRM_LEFT(Pinky,  PINKY_FINGER_MOD, LEFT_PINKY_KEY,  PINKY_HOLDING_TIME)
-HRM_LEFT(Ringy,  RINGY_FINGER_MOD, LEFT_RINGY_KEY,  RINGY_HOLDING_TIME)
-HRM_LEFT(Middy,  MIDDY_FINGER_MOD, LEFT_MIDDY_KEY,  MIDDY_HOLDING_TIME)
-HRM_LEFT(Index,  INDEX_FINGER_MOD, LEFT_INDEX_KEY,  INDEX_HOLDING_TIME)
-HRM_RIGHT(Pinky, PINKY_FINGER_MOD, RIGHT_PINKY_KEY, PINKY_HOLDING_TIME)
-HRM_RIGHT(Ringy, RINGY_FINGER_MOD, RIGHT_RINGY_KEY, RINGY_HOLDING_TIME)
-HRM_RIGHT(Middy, MIDDY_FINGER_MOD, RIGHT_MIDDY_KEY, MIDDY_HOLDING_TIME)
-HRM_RIGHT(Index, INDEX_FINGER_MOD, RIGHT_INDEX_KEY, INDEX_HOLDING_TIME)
+HRM_LEFT(Pinky,  LEFT_PINKY_KEY,  PINKY_HOLDING_TIME, PINKY_STREAK_DECAY)
+HRM_LEFT(Ringy,  LEFT_RINGY_KEY,  RINGY_HOLDING_TIME, RINGY_STREAK_DECAY)
+HRM_LEFT(Middy,  LEFT_MIDDY_KEY,  MIDDY_HOLDING_TIME, MIDDY_STREAK_DECAY)
+HRM_LEFT(Index,  LEFT_INDEX_KEY,  INDEX_HOLDING_TIME, INDEX_STREAK_DECAY)
+HRM_RIGHT(Pinky, RIGHT_PINKY_KEY, PINKY_HOLDING_TIME, PINKY_STREAK_DECAY)
+HRM_RIGHT(Ringy, RIGHT_RINGY_KEY, RINGY_HOLDING_TIME, RINGY_STREAK_DECAY)
+HRM_RIGHT(Middy, RIGHT_MIDDY_KEY, MIDDY_HOLDING_TIME, MIDDY_STREAK_DECAY)
+HRM_RIGHT(Index, RIGHT_INDEX_KEY, INDEX_HOLDING_TIME, INDEX_STREAK_DECAY)
 
 #define hrml_p(KEY)    LeftPinky_hmr     PINKY_FINGER_MOD  KEY 
 #define LeftPinkyRingy LeftPinky_chord   RINGY_FINGER_MOD  LEFT_RINGY_KEY
