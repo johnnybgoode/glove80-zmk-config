@@ -41,27 +41,29 @@
 #define HRM_M            MIDDY_FINGER_MOD
 #define HRM_I            INDEX_FINGER_MOD
 
-// #define HOMEY_HOLDING_TIME (TAPPING_RESOLUTION + 90) // todo is this used?
+#define HOMEY_STREAK_DECAY TAPPING_RESOLUTION
+#define HOMEY_REPEAT_DECAY (TAPPING_RESOLUTION + 125)
+
 #define INDEX_HOLDING_TIME (TAPPING_RESOLUTION + 40)
 #define MIDDY_HOLDING_TIME (INDEX_HOLDING_TIME + 20)
 #define RINGY_HOLDING_TIME (MIDDY_HOLDING_TIME + 20)
 #define PINKY_HOLDING_TIME (TAPPING_RESOLUTION + 25)
 
-#define CHORD_HOLDING_TIME TAPPING_RESOLUTION
+#define INDEX_STREAK_DECAY HOMEY_STREAK_DECAY
+#define MIDDY_STREAK_DECAY HOMEY_STREAK_DECAY
+#define RINGY_STREAK_DECAY HOMEY_STREAK_DECAY
+#define PINKY_STREAK_DECAY (HOMEY_STREAK_DECAY - 50)
 
-#define HOMEY_STREAK_DECAY TAPPING_RESOLUTION
-#define HOMEY_REPEAT_DECAY (TAPPING_RESOLUTION + 125)
+#define HRM_LEFT(FINGER, HOLD, TAP, HOLD_MS, IDLE_MS) \
+  HRM(Left##FINGER, HOLD, TAP, HOLD_MS, IDLE_MS, RIGHT_HAND_KEYS)
 
-#define HRM_LEFT(FINGER, HOLD, TAP, HOLD_MS) \
-  HRM(Left##FINGER, HOLD, TAP, HOLD_MS, RIGHT_HAND_KEYS)
+#define HRM_RIGHT(FINGER, HOLD, TAP, HOLD_MS, IDLE_MS) \
+  HRM(Right##FINGER, HOLD, TAP, HOLD_MS, IDLE_MS, LEFT_HAND_KEYS)
 
-#define HRM_RIGHT(FINGER, HOLD, TAP, HOLD_MS) \
-  HRM(Right##FINGER, HOLD, TAP, HOLD_MS, LEFT_HAND_KEYS)
-
-#define HRM(NAME, HOLD, TAP, HOLD_MS, TRIGGER_KEYS)                                         \
+#define HRM(NAME, HOLD, TAP, HOLD_MS, IDLE_MS, TRIGGER_KEYS)                                \
   ZMK_HOLD_TAP(NAME ## _hmr, bindings = <&hold_ ## NAME>, <&kp>; flavor = "tap-preferred";  \
                tapping-term-ms = <HOLD_MS>; quick-tap-ms = <HOMEY_REPEAT_DECAY>;            \
-               require-prior-idle-ms = <HOMEY_STREAK_DECAY>;                                \
+               require-prior-idle-ms = <IDLE_MS>;                                           \
                hold-trigger-on-release; hold-trigger-key-positions = <TRIGGER_KEYS>;)       \
                                                                                             \
   ZMK_HOLD_TAP(NAME ## _chord, bindings = <&kp>, <&tap_ ## NAME>; flavor = "tap-preferred"; \
@@ -90,51 +92,51 @@
                 , <&macro_param_1to1>                                                       \
                 , <&macro_tap &kp MACRO_PLACEHOLDER>;)
 
-HRM_LEFT(Pinky,  PINKY_FINGER_MOD, LEFT_PINKY_KEY,  PINKY_HOLDING_TIME)
-HRM_LEFT(Ringy,  RINGY_FINGER_MOD, LEFT_RINGY_KEY,  RINGY_HOLDING_TIME)
-HRM_LEFT(Middy,  MIDDY_FINGER_MOD, LEFT_MIDDY_KEY,  MIDDY_HOLDING_TIME)
-HRM_LEFT(Index,  INDEX_FINGER_MOD, LEFT_INDEX_KEY,  INDEX_HOLDING_TIME)
-HRM_RIGHT(Pinky, PINKY_FINGER_MOD, RIGHT_PINKY_KEY, PINKY_HOLDING_TIME)
-HRM_RIGHT(Ringy, RINGY_FINGER_MOD, RIGHT_RINGY_KEY, RINGY_HOLDING_TIME)
-HRM_RIGHT(Middy, MIDDY_FINGER_MOD, RIGHT_MIDDY_KEY, MIDDY_HOLDING_TIME)
-HRM_RIGHT(Index, INDEX_FINGER_MOD, RIGHT_INDEX_KEY, INDEX_HOLDING_TIME)
+HRM_LEFT(Pinky,  PINKY_FINGER_MOD, LEFT_PINKY_KEY,  PINKY_HOLDING_TIME, PINKY_STREAK_DECAY)
+HRM_LEFT(Ringy,  RINGY_FINGER_MOD, LEFT_RINGY_KEY,  RINGY_HOLDING_TIME, RINGY_STREAK_DECAY)
+HRM_LEFT(Middy,  MIDDY_FINGER_MOD, LEFT_MIDDY_KEY,  MIDDY_HOLDING_TIME, MIDDY_STREAK_DECAY)
+HRM_LEFT(Index,  INDEX_FINGER_MOD, LEFT_INDEX_KEY,  INDEX_HOLDING_TIME, INDEX_STREAK_DECAY)
+HRM_RIGHT(Pinky, PINKY_FINGER_MOD, RIGHT_PINKY_KEY, PINKY_HOLDING_TIME, PINKY_STREAK_DECAY)
+HRM_RIGHT(Ringy, RINGY_FINGER_MOD, RIGHT_RINGY_KEY, RINGY_HOLDING_TIME, RINGY_STREAK_DECAY)
+HRM_RIGHT(Middy, MIDDY_FINGER_MOD, RIGHT_MIDDY_KEY, MIDDY_HOLDING_TIME, MIDDY_STREAK_DECAY)
+HRM_RIGHT(Index, INDEX_FINGER_MOD, RIGHT_INDEX_KEY, INDEX_HOLDING_TIME, INDEX_STREAK_DECAY)
 
-#define hrml_p(KEY)    LeftPinky_hmr     PINKY_FINGER_MOD  KEY 
+#define hrml_p(KEY)    LeftPinky_hmr     PINKY_FINGER_MOD  KEY
 #define LeftPinkyRingy LeftPinky_chord   RINGY_FINGER_MOD  LEFT_RINGY_KEY
 #define LeftPinkyMiddy LeftPinky_chord   MIDDY_FINGER_MOD  LEFT_MIDDY_KEY
 #define LeftPinkyIndex LeftPinky_chord   INDEX_FINGER_MOD  LEFT_INDEX_KEY
 
-#define hrml_r(KEY)    LeftRingy_hmr     RINGY_FINGER_MOD  KEY 
+#define hrml_r(KEY)    LeftRingy_hmr     RINGY_FINGER_MOD  KEY
 #define LeftRingyPinky LeftRingy_chord   PINKY_FINGER_MOD  LEFT_PINKY_KEY
 #define LeftRingyMiddy LeftRingy_chord   MIDDY_FINGER_MOD  LEFT_MIDDY_KEY
 #define LeftRingyIndex LeftRingy_chord   INDEX_FINGER_MOD  LEFT_INDEX_KEY
 
-#define hrml_m(KEY)     LeftMiddy_hmr     MIDDY_FINGER_MOD  KEY 
+#define hrml_m(KEY)    LeftMiddy_hmr     MIDDY_FINGER_MOD  KEY
 #define LeftMiddyPinky LeftMiddy_chord   PINKY_FINGER_MOD  LEFT_PINKY_KEY
 #define LeftMiddyRingy LeftMiddy_chord   RINGY_FINGER_MOD  LEFT_RINGY_KEY
 #define LeftMiddyIndex LeftMiddy_chord   INDEX_FINGER_MOD  LEFT_INDEX_KEY
 
-#define hrml_i(KEY)     LeftIndex_hmr     INDEX_FINGER_MOD  KEY 
+#define hrml_i(KEY)    LeftIndex_hmr     INDEX_FINGER_MOD  KEY
 #define LeftIndexPinky LeftIndex_chord   PINKY_FINGER_MOD  LEFT_PINKY_KEY
 #define LeftIndexRingy LeftIndex_chord   RINGY_FINGER_MOD  LEFT_RINGY_KEY
 #define LeftIndexMiddy LeftIndex_chord   MIDDY_FINGER_MOD  LEFT_MIDDY_KEY
 
-#define hrmr_p(KEY)     RightPinky_hmr   PINKY_FINGER_MOD  KEY 
+#define hrmr_p(KEY)     RightPinky_hmr   PINKY_FINGER_MOD  KEY
 #define RightPinkyRingy RightPinky_chord RINGY_FINGER_MOD  RIGHT_RINGY_KEY
 #define RightPinkyMiddy RightPinky_chord MIDDY_FINGER_MOD  RIGHT_MIDDY_KEY
 #define RightPinkyIndex RightPinky_chord INDEX_FINGER_MOD  RIGHT_INDEX_KEY
 
-#define hrmr_r(KEY)     RightRingy_hmr   RINGY_FINGER_MOD  KEY 
+#define hrmr_r(KEY)     RightRingy_hmr   RINGY_FINGER_MOD  KEY
 #define RightRingyPinky RightRingy_chord PINKY_FINGER_MOD  RIGHT_PINKY_KEY
 #define RightRingyMiddy RightRingy_chord MIDDY_FINGER_MOD  RIGHT_MIDDY_KEY
 #define RightRingyIndex RightRingy_chord INDEX_FINGER_MOD  RIGHT_INDEX_KEY
 
-#define hrmr_m(KEY)     RightMiddy_hmr   MIDDY_FINGER_MOD  KEY 
+#define hrmr_m(KEY)     RightMiddy_hmr   MIDDY_FINGER_MOD  KEY
 #define RightMiddyPinky RightMiddy_chord PINKY_FINGER_MOD  RIGHT_PINKY_KEY
 #define RightMiddyRingy RightMiddy_chord RINGY_FINGER_MOD  RIGHT_RINGY_KEY
 #define RightMiddyIndex RightMiddy_chord INDEX_FINGER_MOD  RIGHT_INDEX_KEY
 
-#define hrmr_i(KEY)     RightIndex_hmr   INDEX_FINGER_MOD  KEY 
+#define hrmr_i(KEY)     RightIndex_hmr   INDEX_FINGER_MOD  KEY
 #define RightIndexPinky RightIndex_chord PINKY_FINGER_MOD  RIGHT_PINKY_KEY
 #define RightIndexRingy RightIndex_chord RINGY_FINGER_MOD  RIGHT_RINGY_KEY
 #define RightIndexMiddy RightIndex_chord MIDDY_FINGER_MOD  RIGHT_MIDDY_KEY

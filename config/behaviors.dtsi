@@ -23,21 +23,21 @@
 THUMB_HOLD_TAP(thm, &mo, &kp)
 
 // Tap: BACKSPACE | double-tap: nav_word | Hold: nav(cursor)-layer.
-#define SMART_NAV &smart_nav CURS 0
-ZMK_AUTO_LAYER(nav_word,
-  continue-list = <LEFT DOWN UP RIGHT CUT _COPY _PASTE LSFT RSFT \
-  _HOME PG_DN PG_UP _END>;)
-THUMB_HOLD_TAP(smart_nav, &mo, &nav_dance)
-ZMK_TAP_DANCE(nav_dance, 
-  bindings = <&kp BSPC>, <&nav_word CURS>, <&kp BSPC>;
-  tapping-term-ms = <TD_TERM_FAST>;)
+//#define SMART_NAV &smart_nav CURS 0
+//ZMK_AUTO_LAYER(nav_word,
+//  continue-list = <LEFT DOWN UP RIGHT CUT _COPY _PASTE LSFT RSFT \
+//  _HOME PG_DN PG_UP _END>;)
+//THUMB_HOLD_TAP(smart_nav, &mo, &nav_dance)
+//ZMK_TAP_DANCE(nav_dance,
+//  bindings = <&kp BSPC>, <&nav_word CURS>, <&kp BSPC>;
+//  tapping-term-ms = <TD_TERM_FAST>;)
 
 // Tap: DELETE | double-tap: num_word | Hold: num-layer.
-#define SMART_NUM &smart_num NUM 0
-THUMB_HOLD_TAP(smart_num, &mo, &num_dance)
-ZMK_TAP_DANCE(num_dance, 
-  bindings = <&kp DELETE>, <&num_word NUM>, <&kp DELETE>;
-  tapping-term-ms = <TD_TERM_NORM>;)
+//#define SMART_NUM &smart_num NUM 0
+//THUMB_HOLD_TAP(smart_num, &mo, &num_dance)
+//ZMK_TAP_DANCE(num_dance,
+//  bindings = <&kp DELETE>, <&num_word NUM>, <&kp DELETE>;
+//  tapping-term-ms = <TD_TERM_NORM>;)
 
 // TODO will this work or need tri-state?
 // Tap: TAB | double-tap: mouse_word | hold: mse-layer.

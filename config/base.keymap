@@ -51,7 +51,7 @@
 
 #define BASE   LAYER_ColemakDH
 #define TYPG   LAYER_Typing
-#define CURS   LAYER_Cursor
+#define NAV    LAYER_Cursor
 #define NUM    LAYER_Number
 #define FUNC   LAYER_Function
 #define SYM    LAYER_Symbol
@@ -71,32 +71,33 @@
 #include "layers.dtsi"
 
 GLV80_LAYER(ColemakDH,
-   &kp GRAVE   &vimQuit      &kp W      &kp F           &kp P  &kp B,                                                                                          &kp J      &kp L        &kp U        &kp Y   &kp SEMI  &kp MINUS,
-  &sft_capsw  &hrml_p A  &hrml_r R  &hrml_m S       &hrml_i T  &kp G,                                                                                          &kp M  &hrmr_i N    &hrmr_m E    &hrmr_r I  &hrmr_p O  &kp SQT,
-       &none      &kp Z      &kp X      &kp C           &kp D  &kp V,  &thm FUNC ESC    &lpar_lt          &lpar_gt,  &kp _HOME      &kp _END  &thm MAG ENTER,  &kp K      &kp H  &semi_comma      &kp DOT   &kp FSLH  &sft_capsw,
-  &mag MAG 0  &kp EQUAL   &kp LBKT   &kp RBKT  &thm MSE BSLH,              SMART_NAV   SMART_NUM  &thm TYPG INSERT,  &tog TYPG  &thm MSE TAB  &spc SYM SPACE,         &kp PG_DN  &msc MSC_DN  &msc MSC_UP  &kp PG_UP  &mag MAG 0
+ &kp GRAVE      &kp Q      &kp W      &kp F           &kp P  &kp B,                                                                                            &kp J      &kp L        &kp U        &kp Y   &kp SEMI   &kp MINUS,
+&sft_capsw  &hrml_p A  &hrml_r R  &hrml_m S       &hrml_i T  &kp G,                                                                                            &kp M  &hrmr_i N    &hrmr_m E    &hrmr_r I  &hrmr_p O     &kp SQT,
+     &none      &kp Z      &kp X      &kp C           &kp D  &kp V,  &thm FUNC ESC      &lpar_lt          &lpar_gt,  &kp _HOME      &kp _END  &thm MAG ENTER,  &kp K      &kp H  &semi_comma      &kp DOT   &kp FSLH  &sft_capsw,
+&mag MAG 0  &kp EQUAL   &kp LBKT   &kp RBKT  &thm MSE BSLH,          &thm NAV BSPC  &thm NUM DEL  &thm TYPG INSERT,  &tog TYPG  &thm MSE TAB  &spc SYM SPACE,         &kp PG_DN  &msc MSC_DN  &msc MSC_UP  &kp PG_UP   &mag MAG 0
 )
 
 GLV80_LAYER(Typing,
   &trans     &trans     &trans     &trans      &trans  &trans,                                                       &trans     &trans     &trans     &trans     &trans  &trans,
   &trans      &kp A      &kp R      &kp S       &kp T  &trans,                                                       &trans      &kp N      &kp E      &kp I      &kp O  &trans,
   &trans     &trans     &trans     &trans      &trans  &trans,  &trans  &trans  &trans,     &trans  &trans  &trans,  &trans     &trans     &trans     &trans     &trans  &trans,
-  &trans  &kp HRM_P  &kp HRM_R  &kp HRM_M  &kp HRM_I,           &trans  &trans  &trans,  &tog TYPG  &trans  &trans,          &kp HRM_I  &kp HRM_M  &kp HRM_R  &kp HRM_P  &trans
+  &trans  &kp HRM_P  &kp HRM_R  &kp HRM_M  &kp HRM_I,           &trans  &trans  &trans,  &tog TYPG  &trans  &trans,          &kp HRM_I  &kp HRM_M  &kp HRM_R  &kp HRM_P   &trans
 )
 
 #include "hrm_bilateral_layers.dtsi"
 
 GLV80_LAYER(Cursor,
-  &sk LSHFT    &kp HRM_P     &kp HRM_R       &kp HRM_M        &kp HRM_I   &kp _COPY,                                                                        &kp _COPY     &kp LEFT        &kp DOWN          &kp UP  &kp RIGHT  &sk LSHFT,
-  &kp _C(L)  &select_all  &select_line    &select_word        &kp _FIND  &kp _PASTE,    &kp ESC  &none  &none,  &select_none  &extend_line  &extend_word,  &kp _PASTE    &kp _HOME       &kp PG_DN       &kp PG_UP   &kp _END  &kp _C(L),
-  &kp _C(K)    &kp _UNDO     &kp _REDO  &kp _FIND_PREV  &kp _FIND_NEXT,               &tog CURS  &none  &none,   &select_all  &select_line  &select_word,                &kp _FIND  &kp _FIND_PREV  &kp _FIND_NEXT  &kp _C(H)  &kp _C(K)
+      &none      &kp RET     &kp SPACE         &kp TAB         &kp BSPC    &kp _CUT,                                                                        &kp _CUT  &kp LS(TAB)       &kp _UNDO       &kp _REDO    &kp TAB      &none,
+  &sk LSHFT    &kp HRM_P     &kp HRM_R       &kp HRM_M        &kp HRM_I   &kp _COPY,                                                                       &kp _COPY     &kp LEFT        &kp DOWN          &kp UP  &kp RIGHT  &sk LSHFT,
+  &kp _C(L)  &select_all  &select_line    &select_word        &kp _FIND  &kp _PASTE,   &kp ESC  &none  &none,  &select_none  &extend_line  &extend_word,  &kp _PASTE    &kp _HOME       &kp PG_DN       &kp PG_UP   &kp _END  &kp _C(L),
+  &kp _C(K)    &kp _UNDO     &kp _REDO  &kp _FIND_PREV  &kp _FIND_NEXT,               &tog NAV  &none  &none,   &select_all  &select_line  &select_word,                &kp _FIND  &kp _FIND_PREV  &kp _FIND_NEXT  &kp _C(H)   &kp _C(K)
 )
 
 GLV80_LAYER(Number,
-          &kp E      &kp RET     &kp SPACE         &kp TAB         &kp BSPC  &kp N0,                                                                    &kp LS(G)      &kp N7    &kp N8    &kp N9  &kp LS(SEMI)  &kp LS(N5),
-      &sk LSHFT    &kp HRM_P     &kp HRM_R       &kp HRM_M        &kp HRM_I   &kp X,                                                                        &kp K      &kp N4    &kp N5    &kp N6     &kp MINUS  &kp LS(EQUAL),
-  &kp LS(MINUS)  &select_all  &select_line    &select_word        &kp _FIND   &kp F,  &kp ESC     &none  &none,  &kp LS(COMMA)  &kp LS(DOT)  &kp COMMA,     &kp J      &kp N1    &kp N2    &kp N3      &kp FSLH  &kp LS(N8),
-          &none    &kp _UNDO     &kp _REDO  &kp _FIND_PREV  &kp _FIND_NEXT,             &none  &tog NUM  &none,      &kp EQUAL      &kp DOT     &kp N0,            &kp LS(N9)  &kp LBKT  &kp RBKT    &kp LS(N0)  &kp LS(N2)
+          &kp E      &kp RET     &kp SPACE         &kp TAB         &kp BSPC  &kp N0,                                                                     &kp LS(G)      &kp N7    &kp N8    &kp N9  &kp LS(SEMI)     &kp LS(N5),
+      &sk LSHFT    &kp HRM_P     &kp HRM_R       &kp HRM_M        &kp HRM_I   &kp X,                                                                         &kp K      &kp N4    &kp N5    &kp N6     &kp MINUS  &kp LS(EQUAL),
+  &kp LS(MINUS)  &select_all  &select_line    &select_word        &kp _FIND   &kp F,  &kp ESC     &none  &none,  &kp LS(COMMA)  &kp LS(DOT)  &kp COMMA,      &kp J      &kp N1    &kp N2    &kp N3      &kp FSLH     &kp LS(N8),
+          &none    &kp _UNDO     &kp _REDO  &kp _FIND_PREV  &kp _FIND_NEXT,             &none  &tog NUM  &none,      &kp EQUAL      &kp DOT     &kp N0,             &kp LS(N9)  &kp LBKT  &kp RBKT    &kp LS(N0)      &kp LS(N2)
 )
 
 GLV80_LAYER(Function,
