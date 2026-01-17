@@ -14,7 +14,7 @@ ZMK_COMBO_BASE(alt_tab_l, &mod_tab_chord _G_TAB LAYER_Cursor, LT1 LT4)
 
 ZMK_COMBO_TYPE(sticky_shift_l, &sk_modtap LSFT LSFT, LT4 LH4)
 ZMK_COMBO_TYPE(sticky_shift_r, &sk_modtap RSFT RSFT, RT4 RH4)
-ZMK_COMBO_TYPE(caps_word_l, &caps_word, LT4 LT5)
+// ZMK_COMBO_TYPE(caps_word_l, &caps_word, LT4 LT5)
 ZMK_COMBO_TYPE(caps_word_r, &caps_word, RT4 RT5)
 ZMK_COMBO_TYPE(caps_lock_l, &kp CAPSLOCK, LT5 LT6)
 ZMK_COMBO_TYPE(caps_lock_r, &kp CAPSLOCK, RT5 RT6)
@@ -23,7 +23,8 @@ ZMK_COMBO_TYPE(toggle_typing, &tog LAYER_Typing, RL0 RB1)
 ZMK_COMBO_ALL(base_reset_l, &to LAYER_Base, LT1 LT2 LT3)
 ZMK_COMBO_ALL(base_reset_r, &to LAYER_Base, RT1 RT2 RT3)
 
-// ZMK_COMBO_TYPE(smart_nav_l, &)
-// Vim combos
+ZMK_COMBO_TYPE(smart_nav_l, &nav_word NAV, LT4 LT5)
+
+// Vim & shell combos
 ZMK_COMBO_BASE(write_quit, &cln_w_q, LU4 LU3)
 ZMK_COMBO_BASE(home, &tilda_slsh, LU5 RL4)

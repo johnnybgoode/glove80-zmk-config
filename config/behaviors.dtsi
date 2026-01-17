@@ -25,14 +25,14 @@
 
 THUMB_HOLD_TAP(thm, &mo, &kp)
 
-// Tap: BACKSPACE | double-tap: nav_word | Hold: nav(cursor)-layer.
-//#define SMART_NAV &smart_nav CURS 0
-//ZMK_AUTO_LAYER(nav_word,
-//  continue-list = <LEFT DOWN UP RIGHT CUT _COPY _PASTE LSFT RSFT \
-//  _HOME PG_DN PG_UP _END>;)
+ZMK_AUTO_LAYER(nav_word,
+  continue-list = <LEFT DOWN UP RIGHT CUT _COPY _PASTE LSFT RSFT \
+  _HOME PG_DN PG_UP _END>;)
+// Tap: BACKSPACE | double-tap: nav_word | Hold: NAV layer.
+//#define SMART_NAV &smart_nav NAV 0
 //THUMB_HOLD_TAP(smart_nav, &mo, &nav_dance)
 //ZMK_TAP_DANCE(nav_dance,
-//  bindings = <&kp BSPC>, <&nav_word CURS>, <&kp BSPC>;
+//  bindings = <&kp BSPC>, <&nav_word NAV>, <&kp BSPC>;
 //  tapping-term-ms = <TD_TERM_FAST>;)
 
 // Tap: DELETE | double-tap: num_word | Hold: num-layer.
