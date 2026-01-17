@@ -71,10 +71,10 @@
 #include "layers.dtsi"
 
 GLV80_LAYER(ColemakDH,
- &kp GRAVE      &kp Q      &kp W      &kp F           &kp P  &kp B,                                                                                            &kp J      &kp L        &kp U        &kp Y   &kp SEMI   &kp MINUS,
-&sft_capsw  &hrml_p A  &hrml_r R  &hrml_m S       &hrml_i T  &kp G,                                                                                            &kp M  &hrmr_i N    &hrmr_m E    &hrmr_r I  &hrmr_p O     &kp SQT,
-     &none      &kp Z      &kp X      &kp C           &kp D  &kp V,  &thm FUNC ESC      &lpar_lt          &lpar_gt,  &kp _HOME      &kp _END  &thm MAG ENTER,  &kp K      &kp H  &semi_comma      &kp DOT   &kp FSLH  &sft_capsw,
-&mag MAG 0  &kp EQUAL   &kp LBKT   &kp RBKT  &thm MSE BSLH,          &thm NAV BSPC  &thm NUM DEL  &thm TYPG INSERT,  &tog TYPG  &thm MSE TAB  &spc SYM SPACE,         &kp PG_DN  &msc MSC_DN  &msc MSC_UP  &kp PG_UP   &mag MAG 0
+   &kp GRAVE      &kp Q      &kp W      &kp F           &kp P  &kp B,                                                                                            &kp J      &kp L        &kp U        &kp Y   &kp SEMI   &kp MINUS,
+  &sft_capsw  &hrml_p A  &hrml_r R  &hrml_m S       &hrml_i T  &kp G,                                                                                            &kp M  &hrmr_i N    &hrmr_m E    &hrmr_r I  &hrmr_p O     &kp SQT,
+       &none      &kp Z      &kp X      &kp C           &kp D  &kp V,  &thm FUNC ESC      &lpar_lt          &lpar_gt,  &kp _HOME      &kp _END  &thm MAG ENTER,  &kp K      &kp H  &semi_comma      &kp DOT   &kp FSLH  &sft_capsw,
+  &mag MAG 0  &kp EQUAL   &kp LBKT   &kp RBKT  &thm MSE BSLH,          &thm NAV BSPC  &thm NUM DEL  &tog TYPG,  &smart_mse &thm MSE TAB  &spc SYM SPACE,         &kp PG_DN  &msc MSC_DN  &msc MSC_UP  &kp PG_UP   &mag MAG 0
 )
 
 GLV80_LAYER(Typing,
@@ -110,16 +110,16 @@ GLV80_LAYER(Function,
 GLV80_LAYER(Symbol,
       &kp GRAVE      &kp COMMA    &kp LS(N9)            &kp LS(N0)        &kp SEMI       &kp DOT,                                                                                 &none      &none        &none      &none      &none  &none,
      &kp LS(N1)       &kp LBKT  &kp LS(LBKT)          &kp LS(RBKT)        &kp RBKT  &kp LS(FSLH),                                                                             &kp GRAVE    &kp DEL  &kp LS(TAB)    &kp INS    &kp ESC  &none,
-     &kp LS(N3)     &kp LS(N6)     &kp EQUAL         &kp LS(MINUS)      &kp LS(N4)    &kp LS(N8),                                                                  &kp LS(SINGLE_QUOTE)   &kp BSPC      &kp TAB  &kp SPACE    &kp RET  &none,
-  &kp LS(GRAVE)  &kp LS(COMMA)  &kp LS(BSLH)             &kp MINUS     &kp LS(DOT)      &kp FSLH,    &kp BSLH       &kp DOT  &kp LS(N8),  &none  &none     &none,               &kp SQT  &sk HRM_I    &sk HRM_M  &sk HRM_R  &sk HRM_P  &none,
-       &dot_dot     &kp LS(N7)       &kp SQT  &kp LS(SINGLE_QUOTE)  &kp LS(EQUAL),                 &kp LS(N5)  &kp LS(SEMI)  &kp LS(N2),  &none  &none  &tog SYM,                            &none        &none      &none      &none  &none
+     &kp LS(N3)     &kp LS(N6)     &kp EQUAL             &kp MINUS      &kp LS(N4)    &kp LS(N8),                                                                  &kp LS(SINGLE_QUOTE)   &kp BSPC      &kp TAB  &kp SPACE    &kp RET  &none,
+  &kp LS(GRAVE)  &kp LS(COMMA)  &kp LS(BSLH)         &kp LS(MINUS)     &kp LS(DOT)      &kp FSLH,    &kp BSLH       &kp DOT  &kp LS(N8),  &none  &none     &none,               &kp SQT  &sk HRM_I    &sk HRM_M  &sk HRM_R  &sk HRM_P  &none,
+       &dot_dot     &kp LS(N7)       &kp SQT  &kp LS(SINGLE_QUOTE)  &kp LS(EQUAL),                 &kp LS(N5)  &kp LS(SEMI)  &kp LS(N2),  &none  &none  &tog SYM,                            &none        &none      &none      &none   &none
 )
 
 GLV80_LAYER(Mouse,
-  &none     &mkp MB5  &mkp RCLK  &mkp MCLK   &mkp LCLK     &mkp MB4,                                                                         &mkp MB4       &mkp LCLK       &mkp RCLK     &mkp MCLK         &mkp MB5  &none,
-  &none    &kp HRM_P  &kp HRM_R  &kp HRM_M   &kp HRM_I  &msc MSC_UP,                                                                      &msc MSC_DN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &msc MSC_R,
-  &none  &msc MSC_DN   &kp _CUT  &kp _COPY  &kp _PASTE  &msc MSC_DN,  &kp _PASTE  &kp _COPY  &kp _CUT  &kp _CUT,  &kp _COPY  &kp _PASTE,  &msc MSC_UP       &sk HRM_I       &sk HRM_M     &sk HRM_R        &sk HRM_P  &msc MSC_L,
-  &none     &mo MSEW   &mo MSEI   &mo MSES   &mo MSEF,                 &mkp LCLK  &mkp RCLK  &mkp MB4     &none,   &tog MSE       &none,                     &mo MSEF        &mo MSES      &mo MSEI         &mo MSEW  &kp K_APP
+  &none     &mkp MB5  &mkp RCLK  &mkp MCLK   &mkp LCLK     &mkp MB4,                                                                         &mkp MB4       &mkp LCLK       &mkp RCLK     &mkp MCLK         &mkp MB5        &none,
+  &none    &kp HRM_P  &kp HRM_R  &kp HRM_M   &kp HRM_I  &msc MSC_UP,                                                                       &msc MSC_L  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT   &msc MSC_R,
+  &none  &msc MSC_DN   &kp _CUT  &kp _COPY  &kp _PASTE  &msc MSC_DN,  &kp _PASTE  &kp _COPY  &kp _CUT  &kp _CUT,  &kp _COPY  &kp _PASTE,  &msc MSC_DN       &sk HRM_I       &sk HRM_M     &sk HRM_R        &sk HRM_P  &msc MSC_UP,
+  &none     &mo MSEW   &mo MSEI   &mo MSES   &mo MSEF,                 &mkp LCLK  &mkp RCLK  &mkp MB4     &none,   &tog MSE       &none,                     &mo MSEF        &mo MSES      &mo MSEI         &mo MSEW     &kp K_APP
 )
 
 #include "mouse_warp_layers.dtsi"
