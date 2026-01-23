@@ -61,12 +61,12 @@ COPY --chmod=755 <<EOF /bin/build.sh
   fi
 
   CMAKE_EXTRA_MODULES=(
-    "/modules/zmk/adaptive-key"
+    #"/modules/zmk/adaptive-key"
     "/modules/zmk/auto-layer"
     "/modules/zmk/helpers"
-    "/modules/zmk/leader-key"
+    #"/modules/zmk/leader-key"
     "/modules/zmk/tri-state"
-    "/modules/zmk/unicode"
+    #"/modules/zmk/unicode"
   )
   CMAKE_EXTRA_MODULES_STRING="\$(IFS=\\; ; echo "\${CMAKE_EXTRA_MODULES[*]}")"
 

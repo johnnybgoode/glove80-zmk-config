@@ -25,14 +25,14 @@
 
 THUMB_HOLD_TAP(thm, &mo, &kp)
 
-// Tap: BACKSPACE | double-tap: nav_word | Hold: nav(cursor)-layer.
-//#define SMART_NAV &smart_nav CURS 0
-//ZMK_AUTO_LAYER(nav_word,
-//  continue-list = <LEFT DOWN UP RIGHT CUT _COPY _PASTE LSFT RSFT \
-//  _HOME PG_DN PG_UP _END>;)
+ZMK_AUTO_LAYER(nav_word,
+  continue-list = <LEFT DOWN UP RIGHT CUT _COPY _PASTE LSFT RSFT \
+  _HOME PG_DN PG_UP _END>;)
+// Tap: BACKSPACE | double-tap: nav_word | Hold: NAV layer.
+//#define SMART_NAV &smart_nav NAV 0
 //THUMB_HOLD_TAP(smart_nav, &mo, &nav_dance)
 //ZMK_TAP_DANCE(nav_dance,
-//  bindings = <&kp BSPC>, <&nav_word CURS>, <&kp BSPC>;
+//  bindings = <&kp BSPC>, <&nav_word NAV>, <&kp BSPC>;
 //  tapping-term-ms = <TD_TERM_FAST>;)
 
 // Tap: DELETE | double-tap: num_word | Hold: num-layer.
@@ -42,17 +42,12 @@ THUMB_HOLD_TAP(thm, &mo, &kp)
 //  bindings = <&kp DELETE>, <&num_word NUM>, <&kp DELETE>;
 //  tapping-term-ms = <TD_TERM_NORM>;)
 
-// TODO will this work or need tri-state?
-// Tap: TAB | double-tap: mouse_word | hold: mse-layer.
-// #define MV_LEFT = &mmv MOVE_LEFT
-// #define SMART_MOUSE &smart_mse MSE 0
-// ZMK_AUTO_LAYER(mouse_word,
-//   continue-list = <MV_LEFT>;
-//   ignore-modifiers;)
-// THUMB_HOLD_TAP(smart_mse, &mo, &mse_dance)
-// ZMK_TAP_DANCE(mse_dance,
-//   bindings = <&kp TAB>, <&mouse_word MSE>, <&kp TAB>;
-//   tapping-term-ms = <TD_TERM_NORM>;)
+// Smart-mouse, requires tri-state module.
+ZMK_TRI_STATE(smart_mse, bindings = <&tog MSE>, <&none>, <&tog MSE>;
+    ignored-key-positions = 
+      <LU2 LU1 RU1 RU2 RU3 LH4 LH2 LH1 RH0 RH1 RH2 RH3 RH4 RH5 RL0 RL5 LB4 LB3 LB2 LB1 LT5 LT6 RT5>;
+    ignored-layers = < BASE MSE MSEW MSEI MSES MSEF >;
+)
 
 #define SPACE_HOLDING_TIME 200
 #define SPACE_REPEAT_DECAY SPACE_HOLDING_TIME

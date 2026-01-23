@@ -9,17 +9,23 @@ targets=$(
   done
 )
 build_dir=${1:-'_build'}
-newest=$(ls -t $build_dir/*.uf2 | head -1)
-
-echo "Flashing '${newest}' to ${targets[@]**/\n}"
-
-for target in ${targets}; do
-  cp -v "$newest" "${target}/flash.uf2" &
-done
+if [ -e "$build_dir"/*rh.uf2 -a -e "$build_dir"/*lh.uf2 ]; then
+  echo "Found right/left UF2s, flashing to respective devices..."
+  if [ -d /Volumes/GLV80RHBOOT ]; then
+    cp -v "$build_dir"/*rh.uf2 /Volumes/GLV80RHBOOT/flash.uf2 &
+  fi
+  if [ -d /Volumes/GLV80LHBOOT ]; then
+    cp -v "$build_dir"/*lh.uf2 /Volumes/GLV80LHBOOT/flash.uf2 &
+  fi
+else
+  newest=$(ls -t $build_dir/*.uf2 | head -1)
+  echo "Flashing '${newest}' to ${targets[@]**/\n}"
+  for target in ${targets}; do
+    cp -v "$newest" "${target}/flash.uf2" &
+  done
+fi
 
 while ls -d /Volumes/GLV80?HBOOT > /dev/null 2>&1; do
   sleep 2
   echo '...'
 done
-
-#tee -p "${targets}" < "$newest" 1>/dev/null
