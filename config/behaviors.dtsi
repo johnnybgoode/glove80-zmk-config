@@ -42,13 +42,6 @@ ZMK_AUTO_LAYER(nav_word,
 //  bindings = <&kp DELETE>, <&num_word NUM>, <&kp DELETE>;
 //  tapping-term-ms = <TD_TERM_NORM>;)
 
-// Smart-mouse, requires tri-state module.
-ZMK_TRI_STATE(smart_mse, bindings = <&tog MSE>, <&none>, <&tog MSE>;
-    ignored-key-positions = 
-      <LU2 LU1 RU1 RU2 RU3 LH4 LH2 LH1 RH0 RH1 RH2 RH3 RH4 RH5 RL0 RL5 LB4 LB3 LB2 LB1 LT5 LT6 RT5>;
-    ignored-layers = < BASE MSE MSEW MSEI MSES MSEF >;
-)
-
 #define SPACE_HOLDING_TIME 200
 #define SPACE_REPEAT_DECAY SPACE_HOLDING_TIME
 ZMK_HOLD_TAP(spc,

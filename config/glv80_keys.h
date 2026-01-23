@@ -278,3 +278,37 @@
 #define KEY_RH_C4R6 MSC_UP
 #define KEY_RH_C5R6 PG_UP
 #define KEY_RH_C6R6 0
+
+#define KEY_LH0 0
+#define KEY_LH1 A
+#define KEY_LH2 R
+#define KEY_LH3 S
+#define KEY_LH4 T
+#define KEY_LH5 G
+#define KEY_RH0 M
+#define KEY_RH1 N
+#define KEY_RH2 E
+#define KEY_RH3 I
+#define KEY_RH4 O
+#define KEY_RH5 SQT
+
+#define LEFT_HAND_KEYS                               \
+      0  1  2  3  4                                  \
+     10 11 12 13 14 15                               \
+     22 23 24 25 26 27                               \
+     34 35 36 37 38 39                               \
+     46 47 48 49 50 51                               \
+     64 65 66 67 68                                  \
+                    69 52       57 74                \
+                     70 53     56 73                 \
+                      71 54   55 72
+#define RIGHT_HAND_KEYS                              \
+                                       5  6  7  8  9 \
+                                   16 17 18 19 20 21 \
+                                   28 29 30 31 32 33 \
+                                   40 41 42 43 44 45 \
+                                   58 59 60 61 62 63 \
+                                      75 76 77 78 79 \
+                    69 52       57 74                \
+                     70 53     56 73                 \
+                      71 54   55 72
