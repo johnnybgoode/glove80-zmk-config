@@ -1,0 +1,135 @@
+#include "go60_keys.h"
+
+/* Layer names */
+#define LAYER_ColemakDH 0
+#define LAYER_Typing 1
+#define LAYER_Cursor 2
+#define LAYER_Number 3
+#define LAYER_Function 4
+#define LAYER_Symbol 5
+#define LAYER_LeftPinky 6
+#define LAYER_LeftRingy 7
+#define LAYER_LeftMiddy 8
+#define LAYER_LeftIndex 9
+#define LAYER_RightPinky 10
+#define LAYER_RightRingy 11
+#define LAYER_RightMiddy 12
+#define LAYER_RightIndex 13
+#define LAYER_Mouse 14
+#define LAYER_Lower 15
+#define LAYER_Magic 16
+#define ALL_LAYERS 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+
+/* Environment and metadata defines */
+#define KB_TYPE_GLOVE_80 1
+#define KB_TYPE_GO_60    2
+
+#define KB_TYPE          KB_TYPE_GO_60
+#define EDITOR_HOST_OS   'M'
+
+/* Import base Keymap */
+
+#include "base.keymap"
+
+// #include "mouse.dtsi"
+#define MSC_UP SCRL_UP
+#define MSC_DN SCRL_DOWN
+#define MSC_L  SCRL_LEFT
+#define MSC_R  SCRL_RIGHT
+
+#include "go60_layers.dtsi"
+
+
+/* Generated input processors */
+/ {
+    input_processors {
+        zip_click_to_right_click_mapper: zip_click_to_right_click_mapper {
+            compatible = "zmk,input-processor-code-mapper";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_KEY>;
+            map = <INPUT_BTN_0 INPUT_BTN_1>;
+        };
+    };
+};
+
+/* Custom Device-tree */
+
+/* Input Listeners */
+/**/
+&cirque_lh_listener {
+    input-processors = <&zip_xy_to_scroll_mapper>, <&zip_click_to_right_click_mapper>, <&zip_scroll_scaler 1 8>;
+};
+
+GO60_LAYER(ColemakDH,
+    &kp GRAVE     &kp Q         &kp W         &kp F         &kp P         &kp B,          &kp J         &kp L         &kp U         &kp Y         &kp SEMI      &kp MINUS,
+    &sft_capsw    &hrml_p A     &hrml_r R     &hrml_m S     &hrml_i T     &kp G,          &kp M         &hrmr_i N     &hrmr_m E     &hrmr_r I     &hrmr_p O     &kp SQT,
+    &none         &kp Z         &kp X         &kp C         &kp D         &kp V,          &kp K         &kp H         &semi_comma   &kp DOT       &kp FSLH      &sft_capsw,
+                                &kp LBKT      &kp RBKT      &thm MSE BSLH,                              &kp PG_DN     &msc MSC_DN   &msc MSC_UP,
+                                           &thm NAV BSPC  &thm NUM DEL   &thm FUNC ESC,   &thm MAG ENTER   &thm MSE TAB   &spc SYM SPACE)
+
+
+GO60_LAYER(Typing,
+    &trans        &trans        &trans        &trans        &trans        &trans,         &trans        &trans        &trans        &trans        &trans        &trans,
+    &trans        &kp A         &kp R         &kp S         &kp T         &trans,         &trans        &kp N         &kp E         &kp I         &kp O         &trans,
+    &kp HRM_P     &trans        &trans        &trans        &trans        &trans,         &trans        &trans        &trans        &trans        &trans        &kp HRM_P,
+                                &kp HRM_R     &kp HRM_M     &kp HRM_I,                                  &kp HRM_I     &kp HRM_M     &kp HRM_R,
+                                              &trans        &trans        &tog TYPG,     &trans         &trans         &trans)
+
+#include  "go60_hrm_bilateral_layers.dtsi"
+
+GO60_LAYER(Cursor,
+      &none      &kp RET     &kp SPACE         &kp TAB         &kp BSPC    &kp _CUT,    &kp _CUT  &kp LS(TAB)       &kp _UNDO        &kp _REDO    &kp TAB      &none,
+  &sk LSHFT    &kp HRM_P     &kp HRM_R       &kp HRM_M        &kp HRM_I   &kp _COPY,   &kp _COPY     &kp LEFT        &kp DOWN           &kp UP  &kp RIGHT  &sk LSHFT,
+  &kp _C(L)  &select_all  &select_line    &select_word        &kp _FIND  &kp _PASTE,  &kp _PASTE    &kp _HOME       &kp PG_DN        &kp PG_UP   &kp _END  &kp _C(L),
+                             &kp _REDO  &kp _FIND_PREV  &kp _FIND_NEXT,                             &kp _FIND  &kp _FIND_PREV  &kp _FIND_NEXT,
+                              &tog NAV           &none           &none,                           &select_all    &select_line    &select_word)
+
+GO60_LAYER(Number,
+          &none      &kp ESC       &kp INS     &kp LS(TAB)          &kp DEL   &none,  &kp LS(BSLH)  &kp LS(N3)  &kp LS(N4)  &kp LS(N6)  &kp LS(GRAVE)     &kp LS(N1),
+          &kp E      &kp RET     &kp SPACE         &kp TAB         &kp BSPC  &kp N0,     &kp LS(G)      &kp N7      &kp N8      &kp N9   &kp LS(SEMI)     &kp LS(N5),
+      &sk LSHFT    &kp HRM_P     &kp HRM_R       &kp HRM_M        &kp HRM_I   &kp X,         &kp K      &kp N4      &kp N5      &kp N6      &kp MINUS  &kp LS(EQUAL),
+  &kp LS(MINUS)  &select_all  &select_line    &select_word        &kp _FIND   &kp F,         &kp J      &kp N1      &kp N2      &kp N3       &kp FSLH     &kp LS(N8),
+                                 &kp _REDO  &kp _FIND_PREV  &kp _FIND_NEXT,                         &kp LS(N9)    &kp LBKT   &kp RBKT,
+                                     &none        &tog NUM           &none,                          &kp EQUAL     &kp DOT     &kp N0)
+
+GO60_LAYER(Function,
+      &none      &kp ESC       &kp INS     &kp LS(TAB)          &kp DEL       &none,         &none     &kp C_PLAY    &kp C_PREV     &kp C_NEXT  &kp C_STOP    &none,
+      &none      &kp RET     &kp SPACE         &kp TAB         &kp BSPC  &kp K_CALC,    &kp K_CALC         &kp F7        &kp F8         &kp F9     &kp F10  &kp F13,
+  &sk LSHFT    &kp HRM_P     &kp HRM_R       &kp HRM_M        &kp HRM_I   &kp K_WWW,     &kp K_WWW         &kp F4        &kp F5         &kp F6     &kp F11  &kp F14,
+      &none  &select_all  &select_line    &select_word        &kp _FIND  &kp _FILES,    &kp _FILES         &kp F1        &kp F2         &kp F3     &kp F12  &kp F15,
+                             &kp _REDO  &kp _FIND_PREV  &kp _FIND_NEXT,                             &kp C_BRI_MAX    &kp C_PREV    &kp C_NEXT,
+                                 &none           &none           &none,                                &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP)
+
+
+GO60_LAYER(Symbol,
+      &kp GRAVE      &kp COMMA    &kp LS(N9)            &kp LS(N0)        &kp SEMI       &kp DOT,                 &none      &none        &none      &none      &none  &none,
+     &kp LS(N1)       &kp LBKT  &kp LS(LBKT)          &kp LS(RBKT)        &kp RBKT  &kp LS(FSLH),             &kp GRAVE    &kp DEL  &kp LS(TAB)    &kp INS    &kp ESC  &none,
+     &kp LS(N3)     &kp LS(N6)     &kp EQUAL         &kp LS(MINUS)      &kp LS(N4)    &kp LS(N8),  &kp LS(SINGLE_QUOTE)   &kp BSPC      &kp TAB  &kp SPACE    &kp RET  &none,
+  &kp LS(GRAVE)  &kp LS(COMMA)  &kp LS(BSLH)             &kp MINUS     &kp LS(DOT)      &kp FSLH,               &kp SQT  &sk HRM_I    &sk HRM_M  &sk HRM_R  &sk HRM_P  &none,
+                                     &kp SQT  &kp LS(SINGLE_QUOTE)  &kp LS(EQUAL),                                           &none        &none     &none,
+                                  &kp LS(N5)          &kp LS(SEMI)     &kp LS(N2),                                           &none        &none  &tog SYM)
+
+GO60_LAYER(Mouse,
+  &none           &none      &none      &none       &none           &none,           &none           &none           &none         &none            &none            &none,
+  &none        &mkp MB5  &mkp RCLK  &mkp MCLK   &mkp LCLK        &mkp MB4,        &mkp MB4       &mkp LCLK       &mkp RCLK     &mkp MCLK         &mkp MB5            &none,
+  &none       &kp HRM_P  &kp HRM_R  &kp HRM_M   &kp HRM_I    &msc SCRL_UP,    &msc SCRL_UP  &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT  &msc SCRL_RIGHT,
+  &none  &msc SCRL_DOWN   &kp _CUT  &kp _COPY  &kp _PASTE  &msc SCRL_DOWN,  &msc SCRL_DOWN       &sk HRM_I       &sk HRM_M     &sk HRM_R        &sk HRM_P   &msc SCRL_LEFT,
+                             &none      &none      &none,                                            &none           &none        &none,
+                                                  &mkp LCLK  &mkp RCLK   &mkp MB4,  &none  &tog MSE  &none)
+
+GO60_LAYER(Lower,
+  &none   &none   &none   &none   &none   &none,                                                  &none   &none   &none   &none   &none   &none,
+  &none   &none   &none   &none   &none   &none,                                                  &none   &none   &none   &none   &none   &none,
+  &none   &none   &none   &none   &none   &none,                                                  &none   &none   &none   &none   &none   &none,
+  &none   &none   &none   &none   &none   &none,                                                  &none   &none   &none   &none   &none   &none,
+                  &none   &none   &none,                                                                  &none   &none   &none,
+                                                  &none   &none   &none,  &none   &none   &none)
+
+GO60_LAYER(Magic,
+   &bt BT_CLR     &kp C_BRI_DN     &kp C_BRI_UP       &kp C_PREV       &kp C_NEXT         &kp C_PP,  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP   &none  &none  &bt BT_CLR_ALL,
+  &bootloader  &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG,       &none         &none         &none   &none  &none     &bootloader,
+   &sys_reset  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF,       &none         &none         &none   &none  &none      &sys_reset,
+        &none            &none            &bt_0            &bt_1            &bt_2            &bt_3,       &none         &none         &none   &none  &none           &none,
+                                   &out OUT_USB            &none           &none,                                       &none         &none  &none,
+                                          &none            &none           &none,                                       &none         &none  &none)
+

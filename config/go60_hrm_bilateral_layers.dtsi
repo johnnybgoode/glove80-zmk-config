@@ -1,0 +1,64 @@
+GO60_LAYER_HRML(LeftPinky,
+    &tap_LeftPinky KEY_LU5  &tap_LeftPinky KEY_LU4  &tap_LeftPinky KEY_LU3  &tap_LeftPinky KEY_LU2    &tap_LeftPinky KEY_LU1      &tap_LeftPinky KEY_LU0,
+    &tap_LeftPinky KEY_LH5                   &none         &LeftPinkyRingy         &LeftPinkyMiddy           &LeftPinkyIndex      &tap_LeftPinky KEY_LH0,
+    &tap_LeftPinky KEY_LL5  &tap_LeftPinky KEY_LL4  &tap_LeftPinky KEY_LL3  &tap_LeftPinky KEY_LL2    &tap_LeftPinky KEY_LL1      &tap_LeftPinky KEY_LL0,
+                                                    &tap_LeftPinky KEY_LB2  &tap_LeftPinky KEY_LB1              &mo LAY_LB0,
+                                                                            &tap_LeftPinky KEY_LT1    &tap_LeftPinky KEY_LT2       &tap_LeftPinky KEY_LT3
+)
+
+GO60_LAYER_HRML(LeftRingy,
+    &tap_LeftRingy KEY_LU5  &tap_LeftRingy KEY_LU4  &tap_LeftRingy KEY_LU3  &tap_LeftRingy KEY_LU2    &tap_LeftRingy KEY_LU1      &tap_LeftRingy KEY_LU0,
+    &tap_LeftRingy KEY_LH5         &LeftRingyPinky                   &none         &LeftRingyMiddy           &LeftRingyIndex      &tap_LeftRingy KEY_LH0,
+    &tap_LeftRingy KEY_LL5  &tap_LeftPinky KEY_LL4  &tap_LeftPinky KEY_LL3  &tap_LeftPinky KEY_LL2    &tap_LeftPinky KEY_LL1      &tap_LeftPinky KEY_LL0,
+                                                    &tap_LeftRingy KEY_LB2  &tap_LeftRingy KEY_LB1              &mo LAY_LB0,
+                                                                            &tap_LeftRingy KEY_LT1    &tap_LeftRingy KEY_LT2       &tap_LeftRingy KEY_LT3
+)
+
+GO60_LAYER_HRML(LeftMiddy,
+    &tap_LeftMiddy KEY_LU5  &tap_LeftMiddy KEY_LU4  &tap_LeftMiddy KEY_LU3  &tap_LeftMiddy KEY_LU2    &tap_LeftMiddy KEY_LU1      &tap_LeftMiddy KEY_LU0,
+    &tap_LeftMiddy KEY_LH5         &LeftMiddyPinky         &LeftMiddyRingy                   &none           &LeftMiddyIndex      &tap_LeftMiddy KEY_LH0,
+    &tap_LeftMiddy KEY_LL5  &tap_LeftPinky KEY_LL4  &tap_LeftPinky KEY_LL3  &tap_LeftPinky KEY_LL2    &tap_LeftPinky KEY_LL1      &tap_LeftPinky KEY_LL0,
+                                                    &tap_LeftMiddy KEY_LB2  &tap_LeftMiddy KEY_LB1              &mo LAY_LB0,
+                                                                            &tap_LeftMiddy KEY_LT1    &tap_LeftMiddy KEY_LT2       &tap_LeftMiddy KEY_LT3
+)
+
+GO60_LAYER_HRML(LeftIndex,
+    &tap_LeftIndex KEY_LU5  &tap_LeftIndex KEY_LU4  &tap_LeftIndex KEY_LU3  &tap_LeftIndex KEY_LU2    &tap_LeftIndex KEY_LU1      &tap_LeftIndex KEY_LU0,
+    &tap_LeftIndex KEY_LH5         &LeftIndexPinky         &LeftIndexRingy         &LeftIndexMiddy                     &none      &tap_LeftIndex KEY_LH0,
+    &tap_LeftIndex KEY_LL5  &tap_LeftPinky KEY_LL4  &tap_LeftPinky KEY_LL3  &tap_LeftPinky KEY_LL2    &tap_LeftPinky KEY_LL1      &tap_LeftPinky KEY_LL0,
+                                                    &tap_LeftIndex KEY_LB2  &tap_LeftIndex KEY_LB1              &mo LAY_LB0,
+                                                                            &tap_LeftPinky KEY_LT1    &tap_LeftPinky KEY_LT2       &tap_LeftPinky KEY_LT3
+)
+
+
+GO60_LAYER_HRMR(RightPinky,  
+   &tap_RightPinky KEY_RU0    &tap_RightPinky KEY_RU1    &tap_RightPinky KEY_RU2   &tap_RightPinky KEY_RU3    &tap_RightPinky KEY_RU4    &tap_RightPinky KEY_RU5,
+   &tap_RightPinky KEY_RH0           &RightPinkyIndex           &RightPinkyMiddy          &RightPinkyRingy                      &none    &tap_RightPinky KEY_RH5,
+   &tap_RightPinky KEY_RL0    &tap_RightPinky KEY_RL0    &tap_RightPinky KEY_RL1   &tap_RightPinky KEY_RL2    &tap_RightPinky KEY_RL3    &tap_RightPinky KEY_RL5,
+                              &tap_RightPinky KEY_RB0    &tap_RightPinky KEY_RB1   &tap_RightPinky KEY_RB2, 
+   &tap_RightPinky KEY_RT3    &tap_RightPinky KEY_RT2    &tap_RightPinky KEY_RT1
+)
+
+GO60_LAYER_HRMR(RightRingy,  
+   &tap_RightRingy KEY_RU0    &tap_RightRingy KEY_RU1    &tap_RightRingy KEY_RU2   &tap_RightRingy KEY_RU3    &tap_RightRingy KEY_RU4    &tap_RightRingy KEY_RU5,
+   &tap_RightRingy KEY_RH0           &RightRingyIndex           &RightRingyMiddy                     &none           &RightRingyPinky    &tap_RightRingy KEY_RH5,
+   &tap_RightRingy KEY_RL0    &tap_RightRingy KEY_RL0    &tap_RightRingy KEY_RL1   &tap_RightRingy KEY_RL2    &tap_RightRingy KEY_RL3    &tap_RightRingy KEY_RL5,
+                              &tap_RightRingy KEY_RB0    &tap_RightRingy KEY_RB1   &tap_RightRingy KEY_RB2, 
+   &tap_RightRingy KEY_RT3    &tap_RightRingy KEY_RT2    &tap_RightRingy KEY_RT1
+)
+
+GO60_LAYER_HRMR(RightMiddy,  
+   &tap_RightMiddy KEY_RU0    &tap_RightMiddy KEY_RU1    &tap_RightMiddy KEY_RU2   &tap_RightMiddy KEY_RU3    &tap_RightMiddy KEY_RU4    &tap_RightMiddy KEY_RU5,
+   &tap_RightMiddy KEY_RH0           &RightMiddyIndex                      &none          &RightMiddyRingy           &RightMiddyPinky    &tap_RightMiddy KEY_RH5,
+   &tap_RightMiddy KEY_RL0    &tap_RightMiddy KEY_RL0    &tap_RightMiddy KEY_RL1   &tap_RightMiddy KEY_RL2    &tap_RightMiddy KEY_RL3    &tap_RightMiddy KEY_RL5,
+                              &tap_RightMiddy KEY_RB0    &tap_RightMiddy KEY_RB1   &tap_RightMiddy KEY_RB2, 
+   &tap_RightMiddy KEY_RT3    &tap_RightMiddy KEY_RT2    &tap_RightMiddy KEY_RT1
+)
+
+GO60_LAYER_HRMR(RightIndex,  
+   &tap_RightIndex KEY_RU0    &tap_RightIndex KEY_RU1    &tap_RightIndex KEY_RU2   &tap_RightIndex KEY_RU3    &tap_RightIndex KEY_RU4    &tap_RightIndex KEY_RU5,
+   &tap_RightIndex KEY_RH0                      &none           &RightIndexMiddy          &RightIndexRingy           &RightIndexPinky    &tap_RightIndex KEY_RH5,
+   &tap_RightIndex KEY_RL0    &tap_RightIndex KEY_RL0    &tap_RightIndex KEY_RL1   &tap_RightIndex KEY_RL2    &tap_RightIndex KEY_RL3    &tap_RightIndex KEY_RL5,
+                              &tap_RightIndex KEY_RB0    &tap_RightIndex KEY_RB1   &tap_RightIndex KEY_RB2, 
+   &tap_RightIndex KEY_RT3    &tap_RightIndex KEY_RT2    &tap_RightIndex KEY_RT1
+)

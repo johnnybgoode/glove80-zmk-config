@@ -1,0 +1,39 @@
+
+#undef VARGS_
+#undef VARGS
+#define VARGS_(_20, _19, _18, _17, _16, _15, _14, _13, _12, _11, _10, _9, _8, _7, _6, _5, _4, _3, _2, _1, N, ...) N
+#define VARGS(...) VARGS_(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+
+#define GO60_LAYER(...) CONCAT(GO60_LAYER_, VARGS(__VA_ARGS__))(__VA_ARGS__)
+
+#define GO60_LAYER_11(NAME, LU, RU, LH, RH, LL, RL, LB, RB, LT, RT)                           \
+  GO60_LAYER_13(                                                                              \
+    NAME,                                                                                     \
+    &none  &none  &none  &none  &none  &none,       &none  &none  &none  &none  &none  &none, \
+                         LU,                                         RU,                      \
+                         LH,                                         RH,                      \
+                         LL,                                         RL,                      \
+                         LB,                                         RB,                      \
+                                          LT,       RT)
+
+#define GO60_LAYER_13(NAME, LN, RN, LU, RU, LH, RH, LL, RL, LB, RB, LT, RT)   \
+  ZMK_LAYER(NAME, LN RN LU RU LH RH LL RL LB RB LT RT)
+
+#define GO60_LAYER_HRML(NAME, LU, LH, LL, LB, LT) \
+  GO60_LAYER(                                                                                                         \
+      NAME,                                                                                                           \
+           LU,    &trans       &trans       &trans       &trans       &trans  &trans, \
+           LH,    &trans  &kp KEY_RH1  &kp KEY_RH2  &kp KEY_RH3  &kp KEY_RH4  &trans, \
+           LL,    &trans       &trans       &trans       &trans       &trans  &trans, \
+           LB,                 &trans       &trans       &trans,                      \
+           LT,    &trans       &trans       &trans)
+
+#define GO60_LAYER_HRMR(NAME, RU, RH, RL, RB, RT) \
+  GO60_LAYER(                                                                                               \
+      NAME,                                                                                                 \
+    &trans       &trans       &trans       &trans       &trans  &trans,     RU, \
+    &trans  &kp KEY_LH4  &kp KEY_LH3  &kp KEY_LH2  &kp KEY_LH1  &trans,     RH, \
+    &trans       &trans       &trans       &trans       &trans  &trans,     RL, \
+                              &trans       &trans       &trans,             RB, \
+                                                &trans  &trans  &trans,     RT)
+
